@@ -60,6 +60,38 @@ void TimerComponent::DrawSprite()
 	DrawNumber(milliseconds % 10, basePos.x + 357, basePos.y);
 }
 
+bool TimerComponent::UpdateCountUp(float deltatime)
+{
+	if (!m_isCountUp)return false;
+
+	m_elapsedTime += m_countUpSpeed * deltatime;
+
+	if (m_elapsedTime >= m_targetTime)
+	{
+		m_elapsedTime = m_targetTime;
+		m_isCountUp = false;
+		return false;//カウントアップ完了
+	}
+	return true;
+}
+
+void TimerComponent::StartCountUp(float targetTime)
+{
+	m_targetTime = targetTime;
+	m_elapsedTime = 0.0f;
+	m_isCountUp = true;
+
+	if (m_targetTime > 0.0f)
+	{
+		float animationDirection = 1.5f;
+		m_countUpSpeed = m_targetTime / animationDirection;
+	}
+	else
+	{
+		m_countUpSpeed = 1.0f;
+	}
+}
+
 void TimerComponent::DrawNumber(int number, float x, float y)
 {
 	if (number < 0 || number>9)return;

@@ -48,4 +48,5 @@ protected:
 	KdGameObjectFactory m_gameObjectFactory;
 	//現在アクティブなカメラへのポインタ
 	std::weak_ptr<ICameraComponent> m_wpActiveCamera;
+	std::shared_ptr<KdSoundInstance> m_spBGM;
 };

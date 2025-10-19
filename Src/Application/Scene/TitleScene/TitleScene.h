@@ -7,6 +7,7 @@ public:
 	void Init()override;
 	void SceneUpdate()override;
 	void Draw()override;
+	void Release()override;
 
 private:
 	void DrawTitleWindow();

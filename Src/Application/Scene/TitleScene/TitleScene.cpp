@@ -20,17 +20,21 @@ void TitleScene::Init()
 	AddObject(backgroundObj);
 	backgroundObj->Init();
 
-	KdAudioManager::Instance().Play("Asset/Sound/BGM.wav", true, 1.0f);
+	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 }
 
 void TitleScene::SceneUpdate()
 {
 	float deltatime = Application::Instance().GetDeltaTime();
 	float fadeSpeed = 1.0f;
+	auto& fader = SceneManager::Instance().GetFader();
 
 	if (m_titleAlpha < 1.0f)
 	{
-		m_titleAlpha += fadeSpeed * deltatime;
+		if (!fader.IsFadeing())
+		{
+			m_titleAlpha += fadeSpeed * deltatime;
+		}
 	}
 
 	if (m_titleAlpha >= 0.5f && m_buttonAlpha < 1.0f) 
@@ -47,6 +51,15 @@ void TitleScene::Draw()
 	BaseScene::Draw();
 	DrawTitleWindow();
 	DrawButtonWindow();
+}
+
+void TitleScene::Release()
+{
+	if (m_spBGM && m_spBGM->IsPlaying())
+	{
+		m_spBGM->Stop();
+	}
+	m_spBGM = nullptr;
 }
 
 void TitleScene::DrawTitleWindow()

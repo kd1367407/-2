@@ -11,9 +11,9 @@ void ResultScene::Init()
 	m_clearTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/StageClear.png");
 
 	m_timerObject = std::make_shared<GameObject>();
-	auto timerComp = m_timerObject->AddComponent<TimerComponent>();
-	timerComp->SetElapsedTime(m_finalTime);
+	m_timerComp = m_timerObject->AddComponent<TimerComponent>();
 	auto timerTransform = m_timerObject->AddComponent<TransformComponent>();
+	m_timerComp->SetElapsedTime(m_finalTime);
 	m_timerPos = { -200.0f,0.0f };
 	timerTransform->SetPos({ m_timerPos.x,m_timerPos.y,0.0f });
 	timerTransform->SetScale({ 1.5f,1.5f,1.5f });
@@ -26,24 +26,53 @@ void ResultScene::Init()
 	backgroundObj->AddComponent<BackgroundComponent>();
 	AddObject(backgroundObj);
 	backgroundObj->Init();
+
+	m_isCountingUp = false;
+	m_showRank = false;
+	m_hasCountUpStarted = false;
+
+	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 }
 
 void ResultScene::SceneUpdate()
 {
 	float deltatime = Application::Instance().GetDeltaTime();
 	float fadeSpeed = 1.5f;
+	auto& fader = SceneManager::Instance().GetFader();
 
 	if (m_texAlpha < 1.0f)
 	{
-		m_texAlpha += fadeSpeed * deltatime;
-	}
-
-	if (m_texAlpha >= 0.5f && m_uiAlpha < 1.0f)
-	{
-		m_uiAlpha += fadeSpeed * deltatime;
+		if (!fader.IsFadeing())
+		{
+			m_texAlpha += fadeSpeed * deltatime;
+		}
 	}
 
 	m_texAlpha = std::min(m_texAlpha, 1.0f);
+
+	if (!m_hasCountUpStarted && !fader.IsFadeing())
+	{
+		m_timerComp->StartCountUp(m_finalTime);
+		m_isCountingUp = true;
+		m_hasCountUpStarted = true;
+	}
+
+	if (m_isCountingUp)
+	{
+		float deltatime = Application::Instance().GetDeltaTime();
+
+		m_isCountingUp = m_timerComp->UpdateCountUp(deltatime);
+
+		if (!m_isCountingUp)
+		{
+			m_showRank = true;
+		}
+	}
+
+	if (m_showRank)
+	{
+		m_uiAlpha += fadeSpeed * deltatime;
+	}
 	m_uiAlpha = std::min(m_uiAlpha, 1.0f);
 }
 
@@ -62,6 +91,15 @@ void ResultScene::Draw()
 	BaseScene::Draw();
 	DrawClearWindow();
 	DrawButtonWindow();
+}
+
+void ResultScene::Release()
+{
+	if (m_spBGM && m_spBGM->IsPlaying())
+	{
+		m_spBGM->Stop();
+	}
+	m_spBGM = nullptr;
 }
 
 void ResultScene::DrawClearWindow()

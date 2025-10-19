@@ -50,6 +50,8 @@ void GameScene::Init()
 
 	//7:現在のモードに応じてアクティブカメラを設定
 	OnModeChanged(SceneManager::Instance().GetCurrentMode());
+
+	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/GameBGM.wav", true, 1.0f);
 }
 
 void GameScene::SceneUpdate()
@@ -136,6 +138,11 @@ void GameScene::Draw()
 void GameScene::Release()
 {
 	m_objList.clear();
+	if (m_spBGM && m_spBGM->IsPlaying())
+	{
+		m_spBGM->Stop();
+	}
+	m_spBGM = nullptr;
 }
 
 void GameScene::OnModeChanged(SceneManager::SceneMode newMode)

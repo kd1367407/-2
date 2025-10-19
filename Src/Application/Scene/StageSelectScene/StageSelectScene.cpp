@@ -24,17 +24,22 @@ void StageSelectScene::Init()
 	backgroundObj->AddComponent<BackgroundComponent>();
 	AddObject(backgroundObj);
 	backgroundObj->Init();
+
+	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 }
 
 void StageSelectScene::SceneUpdate()
 {
 	float deltatime = Application::Instance().GetDeltaTime();
-
 	float fadeSpeed = 1.0f;
+	auto& fader = SceneManager::Instance().GetFader();
 
 	if (m_buttonAlpha < 1.0f)
 	{
-		m_buttonAlpha += fadeSpeed * deltatime;
+		if (!fader.IsFadeing())
+		{
+			m_buttonAlpha += fadeSpeed * deltatime;
+		}
 	}
 
 	m_buttonAlpha = std::min(m_buttonAlpha, 1.0f);
@@ -105,6 +110,15 @@ void StageSelectScene::Draw()
 
 	ImGui::PopStyleColor(5);
 	ImGui::PopStyleVar();
+}
+
+void StageSelectScene::Release()
+{
+	if (m_spBGM && m_spBGM->IsPlaying())
+	{
+		m_spBGM->Stop();
+	}
+	m_spBGM = nullptr;
 }
 
 void StageSelectScene::DrawStageButtons(const std::string& filePath)
