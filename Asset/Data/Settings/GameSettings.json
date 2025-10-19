@@ -1,0 +1,25 @@
+{
+    "camera_settings": {
+        "editor_move_speed": 10.0,
+        "editor_sensitivity": 0.4,
+        "tps_distance": -7.0,
+        "tps_height": 3.0,
+        "tps_sensitivity": 0.2
+    },
+    "player_settings": {
+        "brake_force": 20.0,
+        "control_force": 15.0,
+        "coyote_time": 0.1,
+        "jump_power": 400.0,
+        "max_speed": 5.0,
+        "move_force": 15.0
+    },
+    "volume_settings": {
+        "BGM": 0.5,
+        "SE": 0.5
+    },
+    "world_settings": {
+        "fall_time_limit": 5.0,
+        "gravity": 20.0
+    }
+}

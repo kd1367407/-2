@@ -1,0 +1,310 @@
+{
+	"entities": [
+		{
+			"archetype": "Player",
+			"components": {
+				"ColliderComponent": {
+					"layer": "LayerPlayer",
+					"offset": [
+						0.0,
+						0.5,
+						0.0
+					],
+					"radius": 0.5,
+					"shape": "shpere"
+				},
+				"MousePointerComponent": {
+					"texture": "Asset/Textures/UI/MousePointer.png"
+				},
+				"PlayerStatsComponent": {
+					"initialPos": [
+						0.0,
+						5.0,
+						0.0
+					]
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Player/player-1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "dynamic"
+				},
+				"TransformComponent": {
+					"position": [
+						0.8948618173599243,
+						-1.0,
+						0.11419536173343658
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "Player"
+		},
+		{
+			"archetype": "WallBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Wall"
+				},
+				"ColliderComponent": {
+					"layer": [
+						"LayerGround",
+						"LayerBlock"
+					]
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "static"
+				},
+				"TransformComponent": {
+					"position": [
+						0.0,
+						-3.0,
+						0.0
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "WallBlock_0"
+		},
+		{
+			"archetype": "WallBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Wall"
+				},
+				"ColliderComponent": {
+					"layer": [
+						"LayerGround",
+						"LayerBlock"
+					]
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "static"
+				},
+				"TransformComponent": {
+					"position": [
+						2.0,
+						-3.0,
+						0.0
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "WallBlock_1"
+		},
+		{
+			"archetype": "WallBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Wall"
+				},
+				"ColliderComponent": {
+					"layer": [
+						"LayerGround",
+						"LayerBlock"
+					]
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "static"
+				},
+				"TransformComponent": {
+					"position": [
+						2.0,
+						-3.0,
+						2.0
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "WallBlock_2"
+		},
+		{
+			"archetype": "WallBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Wall"
+				},
+				"ColliderComponent": {
+					"layer": [
+						"LayerGround",
+						"LayerBlock"
+					]
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "static"
+				},
+				"TransformComponent": {
+					"position": [
+						0.0,
+						-3.0,
+						2.0
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "WallBlock_3"
+		},
+		{
+			"archetype": "ScalingBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Movable"
+				},
+				"ColliderComponent": {
+					"layer": "LayerBlock"
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "kinematic"
+				},
+				"TransformComponent": {
+					"position": [
+						0.0,
+						-1.8336896896362305,
+						5.389998435974121
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						0.7331005334854126,
+						1.0
+					]
+				}
+			},
+			"name": "ScalingBlock_0"
+		},
+		{
+			"archetype": "ScalingBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Movable"
+				},
+				"ColliderComponent": {
+					"layer": "LayerBlock"
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "kinematic"
+				},
+				"TransformComponent": {
+					"position": [
+						2.4771621227264404,
+						2.085131883621216,
+						4.691503524780273
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						0.009999999776482582,
+						1.0
+					]
+				}
+			},
+			"name": "ScalingBlock_1"
+		},
+		{
+			"archetype": "GoalBlock",
+			"components": {
+				"BlockDataComponent": {
+					"type": "Goal"
+				},
+				"ColliderComponent": {
+					"layer": "LayerGround"
+				},
+				"RenderComponent": {
+					"model": "Asset/Models/Block/Goal/Goal_1.gltf"
+				},
+				"RigidbodyComponent": {
+					"type": "static"
+				},
+				"TransformComponent": {
+					"position": [
+						100.0,
+						-1.0,
+						20.0418701171875
+					],
+					"rotation": [
+						-0.0,
+						0.0,
+						-0.0
+					],
+					"scale": [
+						1.0,
+						1.0,
+						1.0
+					]
+				}
+			},
+			"name": "GoalBlock_0"
+		}
+	]
+}

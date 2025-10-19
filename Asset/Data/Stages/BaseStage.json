@@ -1,0 +1,16 @@
+{
+	"entities": [
+		{
+			"archetype": "TPS_Camera"
+		},
+		{
+			"archetype": "EditorCamera"
+		},
+		{
+			"archetype": "TimerUI"
+		},
+		{
+			"archetype": "Skydome"
+		}
+	]
+}

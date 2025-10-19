@@ -1,0 +1,47 @@
+{
+	"keyboard": [
+		{
+			"name": "ModeChange",
+			"key": "VK_F1"
+		},
+		{
+			"name": "MoveForward",
+			"key": "W"
+		},
+		{
+			"name": "MoveBack",
+			"key": "S"
+		},
+		{
+			"name": "MoveLeft",
+			"key": "A"
+		},
+		{
+			"name": "MoveRight",
+			"key": "D"
+		},
+		{
+			"name": "Undo",
+			"key": "Z"
+		},
+		{
+			"name": "Jump",
+			"key": "VK_SPACE"
+		},
+		{
+			"name": "Tab",
+			"key": "VK_TAB"
+		}
+	],
+	"mouse": [
+		{
+			"name": "Select",
+			"button": "VK_LBUTTON"
+		},
+		{
+			"name": "CameraRotate",
+			"button": "VK_RBUTTON"
+		}
+	]
+}
+

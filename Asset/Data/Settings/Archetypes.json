@@ -1,0 +1,352 @@
+{
+	"Player": {
+		"spawnable_in_editor": false,
+		"savable": true,
+		"default_name": "Player",
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Player/player-1.gltf" },
+			"PlayerStatsComponent": { "initialPos": [ 0.0, 5.0, 0.0 ] },
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "dynamic" },
+			"ColliderComponent": {
+				"layer": "LayerPlayer",
+				"shape": "sphere",
+				"radius": 0.5,
+				"offset": [ 0.0, 0.5, 0.0 ]
+			},
+			"GravityComponent": {},
+			"PlayerInputComponent": {},
+			"MousePointerComponent": { "texture": "Asset/Textures/UI/MousePointer.png" }
+		}
+	},
+	"TPS_Camera": {
+		"spawnable_in_editor": false,
+		"savable": false,
+		"default_name": "TPS_Camera",
+		"components": {
+			"TransformComponent": {},
+			"TPSCameraComponent": {},
+			"TagComponent": {}
+		}
+	},
+	"EditorCamera": {
+		"spawnable_in_editor": false,
+		"savable": false,
+		"default_name": "EditorCamera",
+		"components": {
+			"TransformComponent": {},
+			"EditorCameraComponent": {}
+		}
+	},
+	"PreviewCamera": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"default_name": "PreviewCamera",
+		"components": {
+			"TransformComponent": {},
+			"ImGuiComponent": {},
+			"EditorCameraComponent": {}
+		}
+	},
+	"TimerUI": {
+		"spawnable_in_editor": false,
+		"savable": false,
+		"default_name": "Timer",
+		"components": {
+			"TransformComponent": {
+				"position": [ -600.0, 330.0, 0.0 ]
+			},
+			"TimerComponent": {},
+			"TagComponent": {}
+		}
+	},
+	"Skydome": {
+		"spawnable_in_editor": false,
+		"savable": false,
+		"default_name": "Skydome",
+		"components": {
+			"TransformComponent": {},
+			"SkydomeComponent": {},
+			"TagComponent": {}
+		}
+	},
+	"MovableBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Movable/Movable_1.gltf" },
+			"BlockDataComponent": {
+				"type": "Movable"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Movable/COLMovable_proto.gltf",
+				"layer": "LayerBlock"
+			}
+		}
+	},
+	"WallBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": false,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Wall/Wall_proto1.gltf" },
+			"BlockDataComponent": {
+				"type": "Wall"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "static" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Wall/COLWall_proto.gltf",
+				"layer": [ "LayerGround", "LayerBlock" ]
+			}
+		}
+	},
+	"GoalBlock": {
+		"spawnable_in_editor": false,
+		"savable": true,
+		"swappable": false,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Goal/Goal_1.gltf" },
+			"BlockDataComponent": {
+				"type": "Goal"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "static" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": "LayerGround"
+			}
+		}
+	},
+	"MovingBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Moving/Moving_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Moving"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "box",
+				"model": "Asset/Models/Block/Moving/COLMoving_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"MovingBlockComponent": {
+				"active": true,
+				"startPos": [ 0.0, 2.0, 0.0 ],
+				"endPos": "startPos(5,0,0)"
+			}
+		}
+	},
+	"TransferBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Transfer/Transfer_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Transfer"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "static" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Transfer/COLTransfer_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"TransferBlockComponent": {}
+		}
+	},
+	"JumpBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": {
+				"model": "Asset/Models/Block/Jump/Jump_proto.gltf"
+			},
+			"BlockDataComponent": {
+				"type": "Jump"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "static" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"JumpBlockComponent": {}
+		}
+	},
+	"SlipperyBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": false,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Slippery"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "static" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": [ "LayerGround", "LayerBlock" ]
+			},
+			"SlipperyComponent": {
+				"drag_coefficient": 0.08
+			}
+		}
+	},
+	"RotatingBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Rotating/Rotating_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Rotating"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Rotating/COLRotating_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"RotatingBlockComponent": {
+				"rotation_axis": [ 0.0, 1.0, 0.0 ],
+				"rotation_amount": 90.0,
+				"rotation_speed": 4.0
+			}
+		}
+	},
+	"SinkingBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {},
+			"RenderComponent": { "model": "Asset/Models/Block/Goal/Goal_1.gltf" },
+			"BlockDataComponent": {
+				"type": "Sinking"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "box",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"SinkingBlockComponent": {
+				"max_sink_distance": 3.0,
+				"acceleration": 2.5,
+				"rise_speed": 1.0
+			}
+		}
+	},
+	"ScalingBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": true,
+		"components": {
+			"TransformComponent": {
+				"scale": [ 1.0, 1.0, 1.0 ]
+			},
+			"RenderComponent": { "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Scaling"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": "LayerBlock"
+			},
+			"ScalingBlockComponent": {
+				"scale_axis": [ 0.0, 1.0, 0.0 ],
+				"scale_amount": 0.5,
+				"scale_speed": 2.0
+			}
+		}
+	},
+	"CheckpointBlock": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": false,
+		"components": {
+			"TransformComponent": {
+				"scale": [ 1.0, 1.0, 1.0 ]
+			},
+			"RenderComponent": { "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf" },
+			"BlockDataComponent": {
+				"type": "Checkpoint"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"RigidbodyComponent": { "type": "kinematic" },
+			"ColliderComponent": {
+				"shape": "polygon",
+				"model": "Asset/Models/Block/Goal/COLGoal_proto.gltf",
+				"layer": [ "LayerGround", "LayerBlock" ]
+			},
+			"CheckpointComponent": {}
+		}
+	},
+	"TutorialTrigger": {
+		"spawnable_in_editor": true,
+		"savable": true,
+		"swappable": false,
+		"components": {
+			"TransformComponent": {},
+			"BlockDataComponent": {
+				"type": "TutorialTrigger"
+			},
+			"ImGuiComponent": {},
+			"IdComponent": {},
+			"ColliderComponent": {
+				"shape": "box",
+				"model": "Asset/Models/Block/Wall/COLWall_proto.gltf",
+				"layer": "LayerAll",
+				"isTrigger": true
+			},
+			"TutorialTriggerComponent": {
+				"Text": "ここに説明文を入力",
+				"ImagePath": ""
+			}
+		}
+	}
+}
+

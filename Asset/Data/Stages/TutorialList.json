@@ -1,0 +1,16 @@
+{
+    "stages": [
+		{
+			"label": "Tutorial_Moving",
+			"path": "Asset/Data/Stages/Tutorial_Moving.json"
+		},
+		{
+			"label": "Tutorial_Movable",
+			"path": "Asset/Data/Stages/Tutorial_Movable.json"
+		},
+		{
+			"label": "Tutorial_Checkpoint",
+			"path": "Asset/Data/Stages/Tutorial_Checkpoint.json"
+		}
+    ]
+}

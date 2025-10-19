@@ -1,0 +1,31 @@
+## 【発表後】カイゼン項目リスト
+1. 物理システムのアーキテクチャ改善 (最優先)
+課題: ScalingBlockの上でプレイヤーが空中判定になるなど、kinematicな床とdynamicなプレイヤーの連携が不安定。
+
+原因: Component::Update()とPhysicsSystem::Update()の実行順序により、プレイヤーの位置補正と地面判定のタイミングがずれているため。
+
+修正方針:
+
+GravityComponent::CheckGround()をPostUpdateからUpdateに移動させ、物理演算の前に地面の状態を確定させる。
+
+ScalingBlockやRotatingBlockの動きをm_additionalMovementのような場当たり的な方法ではなく、PhysicsSystemのplatformMovement計算ロジックに正式に統合する。これにより、移動・回転・拡縮する全ての床の上でプレイヤーが安定して追従するようになる。
+
+メリット: プレイヤーコントローラーの安定性が劇的に向上し、様々なギミックを安心して追加できるようになる。
+
+2. boxとsphere衝突形状のスケール対応
+課題: 現在、shapeタイプがboxやsphereのオブジェクトは、Transformのスケールを変更しても当たり判定の大きさが変わらない。
+
+理由: PhysicsSystemの衝突計算が、TransformComponent::GetScale()を考慮していないため。
+
+修正方針: PhysicsSystem内の衝突計算ロジックを修正し、boxとsphereの当たり判定を生成する際に、TransformComponent::GetScale()を適用するようにする。
+
+メリット: polygonに頼らずとも、より軽量なboxやsphere形状で拡縮ブロックを実装できるようになり、エンジンの汎用性とパフォーマンスが向上する。
+
+3. Math::Quaternionクラスの設計見直し
+課題: CreateFrom...系の関数が返り値で結果を返す設計のため、quat = quat.CreateFrom...()のような少し不自然な呼び出し方が必要になっている。
+
+理由: メンバー関数の設計パターンが統一されていないため。
+
+修正方針: CreateFrom...系の関数をstaticなファクトリメソッドに、あるいは返り値をvoidにしてSetFrom...という名前に変更し、プロジェクト全体の呼び出し箇所を統一する。
+
+メリット: コードの意図が明確になり、発見しにくいバグを未然に防ぐことができる。

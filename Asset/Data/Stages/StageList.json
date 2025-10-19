@@ -1,0 +1,24 @@
+{
+    "stages": [
+        {
+            "label": "Training Stage",
+            "path": "Asset/Data/Stages/Stage00.json"
+        },
+        {
+            "label": "Stage 1",
+            "path": "Asset/Data/Stages/Stage01.json"
+        },
+        {
+            "label": "Tibikko",
+            "path": "Asset/Data/Stages/TestStage.json"
+        },
+        {
+            "label": "Rasubegasu",
+            "path": "Asset/Data/Stages/Stage02.json"
+        },
+        {
+            "label": "Athletic",
+            "path": "Asset/Data/Stages/Stage03.json"
+        }
+    ]
+}
