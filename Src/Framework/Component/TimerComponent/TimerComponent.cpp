@@ -25,9 +25,14 @@ void TimerComponent::Update()
 	{
 		return;
 	}
-
+	
 	float deltaTime = Application::Instance().GetDeltaTime();
-	m_elapsedTime += deltaTime;
+	auto& fader = SceneManager::Instance().GetFader();
+	
+	if (!fader.IsFadeing())
+	{
+		m_elapsedTime += deltaTime;
+	}
 }
 
 void TimerComponent::DrawSprite()
