@@ -38,6 +38,14 @@ public:
 	//新規ステージ保存後に自身の状態を更新
 	void UpdateAfterNewStageSave(const std::string& newFilePath);
 
+	//playerのブロック交換回数
+	void StartNewGame() { m_playerMoveCount = 0; }
+	void IncrementPlayerMoves() { m_playerMoveCount++; }
+	int GetFinalMoves() const { return m_playerMoveCount; }
+
+	void SetParMoves(int par) { m_parMoves = par; }
+	int GetParMoves()const { return m_parMoves; }
+
 private:
 	GameManager() = default;
 	~GameManager() = default;
@@ -49,4 +57,7 @@ private:
 	
 	//ゴールタイム
 	float m_finalTime = 0.0f;
+
+	int m_playerMoveCount = 0;
+	int m_parMoves = 0;
 };

@@ -45,6 +45,8 @@ void GameScene::Init()
 	visComp->SetViewModel(m_spGameViewModel);
 	AddObject(visualizerObj);
 	visualizerObj->Init();
+	GameManager::Instance().StartNewGame();
+	GameManager::Instance().SetParMoves(m_spGameViewModel->GetLoadedParMoves());
 
 	m_particleSystem.Init(this);
 

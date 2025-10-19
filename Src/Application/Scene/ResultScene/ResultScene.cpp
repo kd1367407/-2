@@ -7,30 +7,40 @@
 
 void ResultScene::Init()
 {
+	//--データ取得--
 	m_finalTime = GameManager::Instance().GetFinalTime();
-	m_clearTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/StageClear.png");
-
+	m_playerMoves = GameManager::Instance().GetFinalMoves();
+	m_parMoves = GameManager::Instance().GetParMoves();
+	
+	//--TimerObject準備
 	m_timerObject = std::make_shared<GameObject>();
 	m_timerComp = m_timerObject->AddComponent<TimerComponent>();
 	auto timerTransform = m_timerObject->AddComponent<TransformComponent>();
-	m_timerComp->SetElapsedTime(m_finalTime);
 	m_timerPos = { -200.0f,0.0f };
 	timerTransform->SetPos({ m_timerPos.x,m_timerPos.y,0.0f });
 	timerTransform->SetScale({ 1.5f,1.5f,1.5f });
 	m_timerObject->Init();
+	AddObject(m_timerObject);
+	
+	//シーンの設定
+	m_clearTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/StageClear.png");
+	m_playerMovesTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/PlayerMoves1.png");
+	m_parTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/Par1.png");
+	m_numTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Scene/Number-2.png");
 	SceneManager::Instance().SetMode(SceneManager::SceneMode::UI);
 
-	//背景
+	//--背景--
 	auto backgroundObj = std::make_shared<GameObject>();
 	backgroundObj->SetName("Background");
 	backgroundObj->AddComponent<BackgroundComponent>();
 	AddObject(backgroundObj);
 	backgroundObj->Init();
 
-	m_isCountingUp = false;
+	//--演出フラグ--
 	m_showRank = false;
 	m_hasCountUpStarted = false;
 
+	//--サウンド-
 	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 }
 
@@ -50,20 +60,18 @@ void ResultScene::SceneUpdate()
 
 	m_texAlpha = std::min(m_texAlpha, 1.0f);
 
-	if (!m_hasCountUpStarted && !fader.IsFadeing())
+	if (m_texAlpha >= 0.8f)
 	{
-		m_timerComp->StartCountUp(m_finalTime);
-		m_isCountingUp = true;
-		m_hasCountUpStarted = true;
-	}
+		if (!m_hasCountUpStarted && !fader.IsFadeing())
+		{
+			//カウントアップ開始
+			m_timerComp->StartCountUp(m_finalTime);
+			m_hasCountUpStarted = true;
+			//カウントアップ音
+		}
 
-	if (m_isCountingUp)
-	{
-		float deltatime = Application::Instance().GetDeltaTime();
-
-		m_isCountingUp = m_timerComp->UpdateCountUp(deltatime);
-
-		if (!m_isCountingUp)
+		//カウントアップ終わったら
+		if (!m_timerComp->UpdateCountUp(deltatime))
 		{
 			m_showRank = true;
 		}
@@ -78,11 +86,15 @@ void ResultScene::SceneUpdate()
 
 void ResultScene::DrawSprite()
 {
+	auto& fader = SceneManager::Instance().GetFader();
 	BaseScene::DrawSprite();
 
-	if (m_timerObject)
+	if (!fader.IsFadeing())
 	{
-		m_timerObject->DrawSprite();
+		if (m_timerObject)
+		{
+			m_timerObject->DrawSprite();
+		}
 	}
 }
 
@@ -90,6 +102,8 @@ void ResultScene::Draw()
 {
 	BaseScene::Draw();
 	DrawClearWindow();
+	DrawMoveWindow();
+	DrawRankWindow();
 	DrawButtonWindow();
 }
 
@@ -110,7 +124,7 @@ void ResultScene::DrawClearWindow()
 
 	//画面上の方の中央に設置
 	const ImGuiViewport* viewport = ImGui::GetMainViewport();
-	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 200), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 150), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
 	ImGui::Begin("ClearText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 
@@ -140,7 +154,7 @@ void ResultScene::DrawButtonWindow()
 	const ImGuiViewport* viewport = ImGui::GetMainViewport();
 
 	{//ボタン
-		ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 500), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+		ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 650), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 		ImGui::SetNextWindowSize(ImVec2(200, 0));
 		ImGui::Begin("ResultButtons", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -165,4 +179,83 @@ void ResultScene::DrawButtonWindow()
 	}
 	ImGui::PopStyleColor(5);
 	ImGui::PopStyleVar();
+}
+
+void ResultScene::DrawRankWindow()
+{
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_uiAlpha);
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+
+	const ImGuiViewport* viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 500), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	ImGui::Begin("Rank", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+
+	if (m_rankTex)
+	{
+		ImTextureID texID = m_rankTex->WorkSRView();
+		ImVec2 texSize = ImVec2((float)m_rankTex->GetInfo().Width, (float)m_rankTex->GetInfo().Height);
+		ImGui::Image(texID, texSize);
+	}
+
+	ImGui::End();
+
+	ImGui::PopStyleColor(2);
+	ImGui::PopStyleVar();
+}
+
+void ResultScene::DrawMoveWindow()
+{
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_uiAlpha);
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+
+	const ImGuiViewport* viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 550), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	ImGui::Begin("PlayerMoves", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+
+	if (m_playerMovesTex)
+	{
+		ImTextureID texID = m_playerMovesTex->WorkSRView();
+		ImVec2 texSize = ImVec2((float)m_playerMovesTex->GetInfo().Width, (float)m_playerMovesTex->GetInfo().Height);
+		ImGui::Image(texID, texSize);
+	}
+
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x-38, viewport->WorkPos.y + 500), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	ImGui::Begin("par", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+
+	if (m_parTex)
+	{
+		ImTextureID texID = m_parTex->WorkSRView();
+		ImVec2 texSize = ImVec2((float)m_parTex->GetInfo().Width, (float)m_parTex->GetInfo().Height);
+		ImGui::Image(texID, texSize);
+	}
+
+	ImGui::End();
+
+	ImGui::PopStyleColor(2);
+	ImGui::PopStyleVar();
+}
+
+void ResultScene::DrawNumber(int number, float x, float y)
+{
+	if (number < 0 || number>9)return;
+
+	const float	numTexWidth = 51.0f;
+	const float	numTexHeight = 64.0f;
+
+	//矩形計算
+	Math::Rectangle srcRect;
+	srcRect.x = numTexWidth * number;
+	srcRect.y = 0;
+	srcRect.width = numTexWidth;
+	srcRect.height = numTexHeight;
+
+	//描画
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_numTex, x, y, numTexWidth, numTexHeight, &srcRect);
 }

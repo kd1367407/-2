@@ -86,6 +86,8 @@ public:
 	//数字を無視して名前が一致するか判断
 	bool DoesObjectExist(const std::string& name) const;
 
+	int GetLoadedParMoves() const { return m_loadedParMoves; }
+
 private:
 	//ユニークなtransferIDを返す
 	int GetNextUniqueTransferID();
@@ -119,5 +121,7 @@ private:
 	std::map<UINT, BlockState> m_solutionStartState;
 
 	static unsigned int s_nextEntityId;
+
+	int m_loadedParMoves = 0;
 };
 

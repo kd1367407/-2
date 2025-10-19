@@ -32,6 +32,7 @@
 #include"../Src/Framework/Component/ScalingBlockComponent/ScalingBlockComponent.h"
 #include"../Src/Framework/Command/GroupSwapCommand/GroupSwapCommand.h"
 #include"SolutionRecorder/SolutionRecorder.h"
+#include"Scene/GameScene/GameManager/GameManager.h"
 
 unsigned int GameViewModel::s_nextEntityId = 1;
 using json = nlohmann::json;
@@ -81,6 +82,12 @@ void GameViewModel::LoadStage(const std::string stageFilePath)
 		{
 			PopulateSceneFromEntities(stageData["entities"]);
 		}
+
+		m_loadedParMoves = stageData.value("parMoves", 0);
+		if (m_solutionRecorder)
+		{
+			m_solutionRecorder->Clear();
+		}
 	}
 
 	SetupCameraTargets();
@@ -129,6 +136,7 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 		//コマンド実行
 		auto command = std::make_unique<SwapBlockCommand>(m_model, m_selectedIds[0], m_selectedIds[1], false);
 		m_invoker->ExecuteCommand(std::move(command));
+		GameManager::Instance().IncrementPlayerMoves();
 
 		//エフェクト
 		if (auto scene = dynamic_cast<GameScene*>(SceneManager::Instance().GetCurrentScene()))
@@ -398,6 +406,11 @@ void GameViewModel::SaveStage(const std::string& savePath)
 		{
 			stageJson["entities"].push_back(obj->ToJson());
 		}
+	}
+
+	if (m_solutionRecorder)
+	{
+		stageJson["parMoves"] = m_solutionRecorder->GetSolutionSteps().size();
 	}
 
 	std::ofstream ofs(savePath);
