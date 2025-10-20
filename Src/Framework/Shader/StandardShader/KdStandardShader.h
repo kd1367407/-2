@@ -27,6 +27,11 @@ public:
 
 		Math::Vector3	DissolveEmissive = { 0.0f, 1.0f, 1.0f };
 		float			_blank2 = 0.0f;
+
+		int gridEnable = 0;
+		float _blank[3] = { 0.0f, 0.0f ,0.0f };
+		Math::Vector2 uvOffset1;
+		Math::Vector2 uvOffset2;
 	};
 
 	// 定数バッファ(メッシュ単位更新)
