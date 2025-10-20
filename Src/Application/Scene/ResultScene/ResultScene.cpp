@@ -96,14 +96,15 @@ void ResultScene::DrawSprite()
 			m_timerObject->DrawSprite();
 		}
 	}
+
+	DrawClearWindow();
+	DrawMoveWindow();
+	DrawRankWindow();
 }
 
 void ResultScene::Draw()
 {
 	BaseScene::Draw();
-	DrawClearWindow();
-	DrawMoveWindow();
-	DrawRankWindow();
 	DrawButtonWindow();
 }
 
@@ -119,7 +120,11 @@ void ResultScene::Release()
 void ResultScene::DrawClearWindow()
 {
 	Math::Color color = { 1,1,1,m_texAlpha };
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_clearTex.get(), m_timerPos.x, m_timerPos.y + 100, nullptr, &color);
+	if (m_clearTex)
+	{
+		KdShaderManager::Instance().m_spriteShader.DrawTex(m_clearTex.get(), m_timerPos.x+200, m_timerPos.y + 200, nullptr, &color);
+		//KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), m_timerPos.x + 200, m_timerPos.y + 200, nullptr, &color);
+	}
 }
 
 void ResultScene::DrawButtonWindow()
@@ -188,13 +193,13 @@ void ResultScene::DrawRankWindow()
 
 void ResultScene::DrawMoveWindow()
 {
-	Math::Color color = { 1,1,1,m_uiAlpha };
+	Math::Color color = { 1,1,1,m_texAlpha };
 	Math::Vector2 playerMovesPos = { m_timerPos.x, m_timerPos.y + 500 };
 	Math::Vector2 parPos = { m_timerPos.x, m_timerPos.y + 530 };
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), playerMovesPos.x, playerMovesPos.y, nullptr, &color);
-	DrawNumber(m_playerMoves, playerMovesPos.x, playerMovesPos.y);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), m_timerPos.x, m_timerPos.y, nullptr, &color);
+	//DrawNumber(m_playerMoves, playerMovesPos.x, playerMovesPos.y);
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_parTex.get(), parPos.x, parPos.y, nullptr, &color);
-	DrawNumber(m_parMoves, parPos.x, parPos.y);
+	//DrawNumber(m_parMoves, parPos.x, parPos.y);
 }
 
 void ResultScene::DrawNumber(int number, float x, float y)
