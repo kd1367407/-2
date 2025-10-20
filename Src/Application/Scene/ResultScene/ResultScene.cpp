@@ -118,27 +118,8 @@ void ResultScene::Release()
 
 void ResultScene::DrawClearWindow()
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_texAlpha);
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
-	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-
-	//画面上の方の中央に設置
-	const ImGuiViewport* viewport = ImGui::GetMainViewport();
-	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 150), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-
-	ImGui::Begin("ClearText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
-
-	if (m_clearTex)
-	{
-		ImTextureID texID = m_clearTex->WorkSRView();
-		ImVec2 texSize = ImVec2((float)m_clearTex->GetInfo().Width, (float)m_clearTex->GetInfo().Height);
-		ImGui::Image(texID, texSize);
-	}
-
-	ImGui::End();
-
-	ImGui::PopStyleColor(2);
-	ImGui::PopStyleVar();
+	Math::Color color = { 1,1,1,m_texAlpha };
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_clearTex.get(), m_timerPos.x, m_timerPos.y + 100, nullptr, &color);
 }
 
 void ResultScene::DrawButtonWindow()
@@ -207,39 +188,11 @@ void ResultScene::DrawRankWindow()
 
 void ResultScene::DrawMoveWindow()
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_uiAlpha);
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
-	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-
-	const ImGuiViewport* viewport = ImGui::GetMainViewport();
-	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 550), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-
-	ImGui::Begin("PlayerMoves", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
-
-	if (m_playerMovesTex)
-	{
-		ImTextureID texID = m_playerMovesTex->WorkSRView();
-		ImVec2 texSize = ImVec2((float)m_playerMovesTex->GetInfo().Width, (float)m_playerMovesTex->GetInfo().Height);
-		ImGui::Image(texID, texSize);
-	}
-
-	ImGui::End();
-
-	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x-38, viewport->WorkPos.y + 500), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-
-	ImGui::Begin("par", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
-
-	if (m_parTex)
-	{
-		ImTextureID texID = m_parTex->WorkSRView();
-		ImVec2 texSize = ImVec2((float)m_parTex->GetInfo().Width, (float)m_parTex->GetInfo().Height);
-		ImGui::Image(texID, texSize);
-	}
-
-	ImGui::End();
-
-	ImGui::PopStyleColor(2);
-	ImGui::PopStyleVar();
+	Math::Color color = { 1,1,1,m_uiAlpha };
+	Math::Vector2 playerMovesPos = { m_timerPos.x, m_timerPos.y + 500 };
+	Math::Vector2 parPos = { m_timerPos.x, m_timerPos.y + 530 };
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), playerMovesPos.x, playerMovesPos.y, nullptr, &color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_parTex.get(), parPos.x, parPos.y, nullptr, &color);
 }
 
 void ResultScene::DrawNumber(int number, float x, float y)
