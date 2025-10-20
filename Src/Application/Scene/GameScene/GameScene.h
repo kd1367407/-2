@@ -72,6 +72,8 @@ private:
 	std::string m_hitText;
 	std::shared_ptr<KdTexture> m_pHintTexture = nullptr;
 
+	bool m_isTimerStarted = false;
+
 	Editor m_editor;
 
 	ParticleSystem m_particleSystem;

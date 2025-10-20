@@ -195,7 +195,7 @@ void ResultScene::DrawMoveWindow()
 {
 	Math::Color color = { 1,1,1,m_texAlpha };
 	Math::Vector2 playerMovesPos = { m_timerPos.x + 130, m_timerPos.y - 100 };
-	Math::Vector2 parPos = { m_timerPos.x, m_timerPos.y + 530 };
+	Math::Vector2 parPos = { playerMovesPos.x, playerMovesPos.y + 50 };
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), playerMovesPos.x, playerMovesPos.y, nullptr, &color);
 	DrawNumber(m_playerMoves, playerMovesPos.x + 140, playerMovesPos.y);
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_parTex.get(), parPos.x, parPos.y, nullptr, &color);

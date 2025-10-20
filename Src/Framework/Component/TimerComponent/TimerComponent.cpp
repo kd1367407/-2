@@ -31,7 +31,10 @@ void TimerComponent::Update()
 	
 	if (!fader.IsFadeing())
 	{
-		m_elapsedTime += deltaTime;
+		if (m_isTimerActive)
+		{
+			m_elapsedTime += deltaTime;
+		}
 	}
 }
 

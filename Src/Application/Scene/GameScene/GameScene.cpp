@@ -8,6 +8,7 @@
 #include"../Src/Framework/Component/CameraComponent/EditorCameraComponent/EditorCameraComponent.h"
 #include"../Src/Framework/Component/SolutionVisualizerComponent/SolutionVisualizerComponent.h"
 #include"../Src/Framework/Component/TagComponent/TagComponent.h"
+#include"../Src/Framework/Component/TimerComponent/TimerComponent.h"
 #include"../../System/PhysicsSystem.h"
 #include"../SceneManager.h"
 #include"../GameScene/GameManager/GameManager.h"
@@ -61,10 +62,6 @@ void GameScene::SceneUpdate()
 
 	if (SceneManager::Instance().GetCurrentMode() == SceneManager::SceneMode::Game|| SceneManager::Instance().GetCurrentMode() == SceneManager::SceneMode::UI)
 	{
-		m_gameInputHandler->Update();
-
-		m_particleSystem.Update(Application::Instance().GetDeltaTime());
-
 		if (KdInputManager::Instance().IsPress("Tab"))
 		{
 			m_bShowControlsWindow = !m_bShowControlsWindow;
@@ -76,6 +73,35 @@ void GameScene::SceneUpdate()
 			else
 			{
 				SceneManager::Instance().SetMode(SceneManager::SceneMode::Game);
+			}
+		}
+
+		if (SceneManager::Instance().GetCurrentMode() == SceneManager::SceneMode::Game)
+		{
+			if (!m_isTimerStarted)
+			{
+				if (KdInputManager::Instance().IsPress("MoveForward") ||
+					KdInputManager::Instance().IsPress("MoveBack") ||
+					KdInputManager::Instance().IsPress("MoveLeft") ||
+					KdInputManager::Instance().IsPress("MoveRight") ||
+					KdInputManager::Instance().IsPress("Jump") ||
+					KdInputManager::Instance().IsPress("Select"))
+				{
+					if (auto timerObj = FindObject("Timer"))
+					{
+						if (auto timerComp = timerObj->GetComponent<TimerComponent>())
+						{
+							timerComp->StartTimer();
+							m_isTimerStarted = true;
+						}
+					}
+				}
+			}
+
+			if (m_isTimerStarted)
+			{
+				m_gameInputHandler->Update();
+				m_particleSystem.Update(Application::Instance().GetDeltaTime());
 			}
 		}
 	}
