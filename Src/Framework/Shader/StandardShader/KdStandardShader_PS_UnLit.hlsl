@@ -15,27 +15,27 @@ SamplerState g_ss : register(s0);
 
 float4 main(VSOutputNoLighting In) : SV_Target0
 {
+	float2 newUV;
+	if(g_gridEnable)
+	{
+		newUV = In.UV * g_UVOffset;
+	}
+	else
+	{
+		newUV = In.UV;
+	}
+	
 	// ディゾルブによる描画スキップ
-	float discardValue = g_dissolveTex.Sample(g_ss, In.UV).r;
+	float discardValue = g_dissolveTex.Sample(g_ss, newUV).r;
 	if (discardValue < g_dissolveValue)
 	{
 		discard;
 	}
 
 	float4 baseColor;
-	if(g_gridEnable)
-	{
-		float color1 = g_gridTex1.Sample(g_ss, In.UV + g_UVOffset1);
-		float color2 = g_gridTex1.Sample(g_ss, In.UV + g_UVOffset2);
-
-		//color1,2を加算合成、指定色をかける
-		baseColor = (color1 + color2) * g_BaseColor * In.Color;
-
-	}
-	else
-	{
-		baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
-	}
+	
+	baseColor = g_tex.Sample(g_ss, newUV) * In.Color * g_BaseColor;
+	
 	
 	float3 outColor = baseColor.rgb;
 	

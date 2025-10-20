@@ -21,9 +21,6 @@ float4 main(VSOutput In) : SV_Target0
 		//2枚目も同様
 		float4 color2 = g_normalTex2.Sample(g_ss, In.UV + g_UVOffset2);
 
-		//color1 = color1 * 2.0 - 1.0;
-		//color2 = color2 * 2.0 - 1.0;
-
 		return (color1 + color2) * g_color;
 	}
 	else

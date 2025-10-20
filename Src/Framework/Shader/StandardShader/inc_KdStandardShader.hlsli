@@ -12,9 +12,6 @@ cbuffer cbObject : register(b0)
 	float3 g_dissolveEmissive;	// 境界の色
 
 	int g_gridEnable;
-	float3 padding1;
-	float2 g_UVOffset1;
-	float2 g_UVOffset2;
 };
 
 // 定数バッファ(メッシュ単位)

@@ -8,11 +8,24 @@
 void SkydomeComponent::Awake()
 {
 	m_spModel = KdAssets::Instance().m_modeldatas.GetData("Asset/Models/Skydome/Skydome.gltf");
+	m_uvTex1 = KdAssets::Instance().m_textures.GetData("Asset/Textures/grid4.png");
+	m_uvTex2 = KdAssets::Instance().m_textures.GetData("Asset/Textures/grid3.png");
 }
 
 void SkydomeComponent::Start()
 {
 	m_transform = m_owner->GetComponent<TransformComponent>();
+}
+
+void SkydomeComponent::Update()
+{
+	float deltaTime = Application::Instance().GetDeltaTime();
+
+	m_uvOffset1.x += 0.02f * deltaTime;
+	m_uvOffset2.y += 0.005f * deltaTime;
+
+	if (m_uvOffset1.x > 0.5f) m_uvOffset1.x -= 0.5f;
+	if (m_uvOffset2.y > 0.5f) m_uvOffset2.y -= 0.5f;
 }
 
 void SkydomeComponent::PostUpdate()
@@ -39,8 +52,16 @@ void SkydomeComponent::DrawUnLit()
 	//裏面カリンングをOFF
 	KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
 
+	KdShaderManager::Instance().m_StandardShader.SetUVTiling({ 5.0f, 5.0f });
+
+	KdShaderManager::Instance().m_StandardShader.SetUVOffset(m_uvOffset1);
+
+	KdShaderManager::Instance().m_StandardShader.SetGridEnable(true);
+
 	//描画
 	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, m_transform->GetMatrix());
+
+	KdShaderManager::Instance().m_StandardShader.SetGridEnable(true);
 
 	//元に戻す
 	KdShaderManager::Instance().UndoRasterizerState();
