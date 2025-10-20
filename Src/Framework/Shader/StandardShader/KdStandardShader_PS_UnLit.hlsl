@@ -5,6 +5,9 @@
 Texture2D g_tex : register(t0);
 Texture2D g_emissiveTex : register(t2); // 発光テクスチャ
 
+Texture2D g_gridTex1 : register(t3);
+Texture2D g_gridTex2 : register(t4);
+
 Texture2D g_dissolveTex : register(t11); // ディゾルブマップ
 
 // サンプラ
@@ -19,7 +22,21 @@ float4 main(VSOutputNoLighting In) : SV_Target0
 		discard;
 	}
 
-	float4 baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
+	float4 baseColor;
+	if(g_gridEnable)
+	{
+		float color1 = g_gridTex1.Sample(g_ss, In.UV + g_UVOffset1);
+		float color2 = g_gridTex1.Sample(g_ss, In.UV + g_UVOffset2);
+
+		//color1,2を加算合成、指定色をかける
+		baseColor = (color1 + color2) * g_BaseColor * In.Color;
+
+	}
+	else
+	{
+		baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
+	}
+	
 	float3 outColor = baseColor.rgb;
 	
 	// Alphaテスト
