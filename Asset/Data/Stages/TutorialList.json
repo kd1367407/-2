@@ -11,6 +11,10 @@
 		{
 			"label": "Tutorial_Checkpoint",
 			"path": "Asset/Data/Stages/Tutorial_Checkpoint.json"
+		},
+		{
+			"label": "Tutorial_Sinking",
+			"path": "Asset/Data/Stages/Tutorial_Sinking.json"
 		}
     ]
 }

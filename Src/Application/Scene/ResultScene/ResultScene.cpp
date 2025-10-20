@@ -192,7 +192,9 @@ void ResultScene::DrawMoveWindow()
 	Math::Vector2 playerMovesPos = { m_timerPos.x, m_timerPos.y + 500 };
 	Math::Vector2 parPos = { m_timerPos.x, m_timerPos.y + 530 };
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), playerMovesPos.x, playerMovesPos.y, nullptr, &color);
+	DrawNumber(m_playerMoves, playerMovesPos.x, playerMovesPos.y);
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_parTex.get(), parPos.x, parPos.y, nullptr, &color);
+	DrawNumber(m_parMoves, parPos.x, parPos.y);
 }
 
 void ResultScene::DrawNumber(int number, float x, float y)
