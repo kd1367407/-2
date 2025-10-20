@@ -26,8 +26,7 @@ public:
 		float			DissolveEdgeRange = 0.03f;	// 0 ～ 1
 
 		Math::Vector3	DissolveEmissive = { 0.0f, 1.0f, 1.0f };
-		
-		int gridEnable = 0;
+		float			_blank2 = 0.0f;
 	};
 
 	// 定数バッファ(メッシュ単位更新)
@@ -59,13 +58,6 @@ public:
 	//================================================
 	// 設定・取得
 	//================================================
-
-	void SetGridEnable(bool enable)
-	{
-		m_cb0_Obj.Work().gridEnable = enable;
-
-		m_dirtyCBObj = true;
-	}
 
 	// UVタイリング設定
 	void SetUVTiling(const Math::Vector2& tiling)

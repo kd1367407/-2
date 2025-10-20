@@ -14,19 +14,9 @@ Texture2D g_dissolveTex : register(t11); // ディゾルブマップ
 SamplerState g_ss : register(s0);
 
 float4 main(VSOutputNoLighting In) : SV_Target0
-{
-	float2 newUV;
-	if(g_gridEnable)
-	{
-		newUV = In.UV * g_UVOffset;
-	}
-	else
-	{
-		newUV = In.UV;
-	}
-	
+{	
 	// ディゾルブによる描画スキップ
-	float discardValue = g_dissolveTex.Sample(g_ss, newUV).r;
+	float discardValue = g_dissolveTex.Sample(g_ss, In.UV).r;
 	if (discardValue < g_dissolveValue)
 	{
 		discard;
@@ -34,7 +24,7 @@ float4 main(VSOutputNoLighting In) : SV_Target0
 
 	float4 baseColor;
 	
-	baseColor = g_tex.Sample(g_ss, newUV) * In.Color * g_BaseColor;
+	baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
 	
 	
 	float3 outColor = baseColor.rgb;
