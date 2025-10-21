@@ -20,7 +20,14 @@ VSOutputNoLighting main(
 	Out.Pos = mul(Out.Pos, g_mProj);	// ビュー座標系 -> 射影座標系へ変換
 
 	// UV座標
-	Out.UV = uv * g_UVTiling + g_UVOffset;
+	if(g_gridEnable)
+	{
+		Out.UV = uv * g_UVTiling;
+	}
+	else
+	{
+		Out.UV = uv * g_UVTiling + g_UVOffset;
+	}
 
 	// 色
 	Out.Color = color;

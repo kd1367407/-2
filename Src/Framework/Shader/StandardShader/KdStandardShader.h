@@ -26,7 +26,10 @@ public:
 		float			DissolveEdgeRange = 0.03f;	// 0 ～ 1
 
 		Math::Vector3	DissolveEmissive = { 0.0f, 1.0f, 1.0f };
-		float			_blank2 = 0.0f;
+		int gridEnable = 0;
+
+		Math::Vector2 uvOffset1;
+		Math::Vector2 uvOffset2;
 	};
 
 	// 定数バッファ(メッシュ単位更新)
@@ -58,6 +61,28 @@ public:
 	//================================================
 	// 設定・取得
 	//================================================
+
+	//--スカイドームUV動かす--
+	void SetGridEnable(bool enable)
+	{
+		m_cb0_Obj.Work().gridEnable = enable;
+
+		m_dirtyCBObj = true;
+	}
+
+	void SetGridUVOffset(Math::Vector2 offset1, Math::Vector2 offset2)
+	{
+		m_cb0_Obj.Work().uvOffset1 = offset1;
+		m_cb0_Obj.Work().uvOffset2 = offset2;
+
+		m_dirtyCBObj = true;
+	}
+
+	void SetGridTexture(KdTexture& tex1, KdTexture& tex2)
+	{
+		KdDirect3D::Instance().WorkDevContext()->PSSetShaderResources(3, 1, tex1.WorkSRViewAddress());
+		KdDirect3D::Instance().WorkDevContext()->PSSetShaderResources(4, 1, tex2.WorkSRViewAddress());
+	}
 
 	// UVタイリング設定
 	void SetUVTiling(const Math::Vector2& tiling)

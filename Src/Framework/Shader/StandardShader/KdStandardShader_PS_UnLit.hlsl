@@ -23,8 +23,23 @@ float4 main(VSOutputNoLighting In) : SV_Target0
 	}
 
 	float4 baseColor;
-	
-	baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
+
+	if (g_gridEnable)
+	{
+		float4 color1 = g_gridTex1.Sample(g_ss, In.UV + g_UVOffset1);
+		float4 color2 = g_gridTex2.Sample(g_ss, In.UV + g_UVOffset2);
+
+		baseColor = (color1 * color2) * In.Color * g_BaseColor;
+
+		//baseColor = (color1 + color2) * In.Color * g_BaseColor;
+
+		//baseColor.rgb = 1.0 - (1.0 - color1.rgb) * (1.0 - color2.rgb);
+		//baseColor.a = color1.a;
+	}
+	else
+	{
+		baseColor = g_tex.Sample(g_ss, In.UV) * In.Color * g_BaseColor;
+	}
 	
 	
 	float3 outColor = baseColor.rgb;
