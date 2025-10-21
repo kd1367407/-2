@@ -14,7 +14,8 @@ Texture2D g_dissolveTex : register(t11); // ディゾルブマップ
 SamplerState g_ss : register(s0);
 
 float4 main(VSOutputNoLighting In) : SV_Target0
-{	
+{
+	//return float4(g_UVOffset2, 1, 1);
 	// ディゾルブによる描画スキップ
 	float discardValue = g_dissolveTex.Sample(g_ss, In.UV).r;
 	if (discardValue < g_dissolveValue)
