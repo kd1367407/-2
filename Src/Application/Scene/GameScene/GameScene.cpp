@@ -294,21 +294,35 @@ void GameScene::DrawControlsWindow()
 	//ウィンドウ内の余白を広げる
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(15, 15));
 
-	//タイトルバー(アクティブ)の色指定
-	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+	//枠線追加
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1.0f);
 
-	//ウィンドウの背景色の色指定
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+	//ウィンドウ背景
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.05f, 0.05f, 0.15f, 0.85f));
+
+	//タイトルバー(アクティブ)の色指定
+	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.05f, 0.05f, 0.15f, 0.85f));
+
+	//枠線の色
+	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.3f, 0.7f, 1.0f, 0.5f));
 
 	//テキストの色指定
-	//ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.8f, 1.0f));
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.9f, 0.9f, 1.0f, 1.0f));
+
+	//区切り線
+	ImGui::PushStyleColor(ImGuiCol_Separator, ImVec4(0.3f, 0.7f, 1.0f, 0.3f));
+
+	//ボタン
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.1f, 0.3f, 0.6f, 0.8f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.2f, 0.4f, 0.8f, 0.9f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.15f, 0.35f, 0.7f, 1.0f));
 
 	ImGui::SetNextWindowSize(ImVec2(400, 250), ImGuiCond_Appearing);
 
 	ImVec2 center = ImGui::GetMainViewport()->GetCenter();
 	ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
-	if (ImGui::Begin(U8("操作方法"), &m_bShowControlsWindow))
+	if (ImGui::Begin(U8("操作方法"), &m_bShowControlsWindow, ImGuiWindowFlags_NoTitleBar))
 	{
 		ImGui::Text(U8("=== 基本操作 ==="));
 		ImGui::BulletText(U8("W, A, S, D : 移動"));
@@ -319,7 +333,8 @@ void GameScene::DrawControlsWindow()
 
 		ImGui::Text(U8("=== ブロック操作 ==="));
 		ImGui::BulletText(U8("左クリック : ブロックを選択"));
-		ImGui::TextWrapped(U8("2つのブロックを選択すると、\nそれらの位置が入れ替わります。"));
+		ImGui::TextWrapped(U8("同じブロックを選択すると、そのブロックの選択が解除されます。"));
+		ImGui::TextWrapped(U8("2つのブロックを選択すると、それらの位置が入れ替わります。"));
 
 		ImGui::Separator();
 
@@ -345,9 +360,9 @@ void GameScene::DrawControlsWindow()
 	}
 	ImGui::End();
 
-	ImGui::PopStyleColor(2);
+	ImGui::PopStyleColor(8);
 
-	ImGui::PopStyleVar(2);
+	ImGui::PopStyleVar(3);
 }
 
 void GameScene::DrawTutorialHintWindow()
