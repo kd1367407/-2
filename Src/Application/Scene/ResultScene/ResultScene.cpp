@@ -16,7 +16,7 @@ void ResultScene::Init()
 	m_timerObject = std::make_shared<GameObject>();
 	m_timerComp = m_timerObject->AddComponent<TimerComponent>();
 	auto timerTransform = m_timerObject->AddComponent<TransformComponent>();
-	m_timerPos = { -200.0f,0.0f };
+	m_timerPos = { -200.0f,50.0f };
 	timerTransform->SetPos({ m_timerPos.x,m_timerPos.y,0.0f });
 	timerTransform->SetScale({ 1.5f,1.5f,1.5f });
 	m_timerObject->Init();
@@ -79,6 +79,12 @@ void ResultScene::SceneUpdate()
 
 	if (m_showRank)
 	{
+		m_moveAlpha += fadeSpeed * deltatime;
+	}
+	m_moveAlpha = std::min(m_moveAlpha, 1.0f);
+
+	if (m_moveAlpha >= 0.8f)
+	{
 		m_uiAlpha += fadeSpeed * deltatime;
 	}
 	m_uiAlpha = std::min(m_uiAlpha, 1.0f);
@@ -99,7 +105,7 @@ void ResultScene::DrawSprite()
 
 	DrawClearWindow();
 	DrawMoveWindow();
-	DrawRankWindow();
+	//DrawRankWindow();
 }
 
 void ResultScene::Draw()
@@ -122,15 +128,14 @@ void ResultScene::DrawClearWindow()
 	Math::Color color = { 1,1,1,m_texAlpha };
 	if (m_clearTex)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(m_clearTex.get(), m_timerPos.x+200, m_timerPos.y + 200, nullptr, &color);
-		//KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), m_timerPos.x + 200, m_timerPos.y + 200, nullptr, &color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(m_clearTex.get(), m_timerPos.x+200, m_timerPos.y + 150, nullptr, &color);
 	}
 }
 
 void ResultScene::DrawButtonWindow()
 {
-	if (m_uiAlpha <= 0.0f)return;
-	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_uiAlpha);
+	if (m_texAlpha <= 0.0f)return;
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_texAlpha);
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
 	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.1f, 0.2f, 0.4f, 0.6f));
@@ -140,7 +145,7 @@ void ResultScene::DrawButtonWindow()
 	const ImGuiViewport* viewport = ImGui::GetMainViewport();
 
 	{//ボタン
-		ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 650), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+		ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 600), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 		ImGui::SetNextWindowSize(ImVec2(200, 0));
 		ImGui::Begin("ResultButtons", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -193,19 +198,20 @@ void ResultScene::DrawRankWindow()
 
 void ResultScene::DrawMoveWindow()
 {
-	Math::Color color = { 1,1,1,m_texAlpha };
+	Math::Color color = { 1,1,1,m_moveAlpha };
 	Math::Vector2 playerMovesPos = { m_timerPos.x + 130, m_timerPos.y - 100 };
-	Math::Vector2 parPos = { playerMovesPos.x, playerMovesPos.y + 50 };
+	Math::Vector2 parPos = { playerMovesPos.x - 30, playerMovesPos.y - 70 };
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_playerMovesTex.get(), playerMovesPos.x, playerMovesPos.y, nullptr, &color);
-	DrawNumber(m_playerMoves, playerMovesPos.x + 140, playerMovesPos.y);
+	DrawNumber(m_playerMoves, playerMovesPos.x + 170, playerMovesPos.y + 5);
 	KdShaderManager::Instance().m_spriteShader.DrawTex(m_parTex.get(), parPos.x, parPos.y, nullptr, &color);
-	//DrawNumber(m_parMoves, parPos.x, parPos.y);
+	DrawNumber(m_parMoves, parPos.x + 210, parPos.y + 5);
 }
 
 void ResultScene::DrawNumber(int number, float x, float y)
 {
 	if (number < 0 || number>9)return;
-
+	
+	Math::Color color = { 1,1,1,m_moveAlpha };
 	const float	numTexWidth = 51.0f;
 	const float	numTexHeight = 64.0f;
 
@@ -217,5 +223,5 @@ void ResultScene::DrawNumber(int number, float x, float y)
 	srcRect.height = numTexHeight;
 
 	//描画
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_numTex, x, y, numTexWidth, numTexHeight, &srcRect);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_numTex, x, y, numTexWidth, numTexHeight, &srcRect,&color);
 }

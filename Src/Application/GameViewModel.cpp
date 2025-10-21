@@ -110,12 +110,14 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 
 	//選択リストから探す
 	auto it = std::find(m_selectedIds.begin(), m_selectedIds.end(), selectedId);
+	auto itPos = std::find(m_selectedPos.begin(), m_selectedPos.end(), selectedPos);
 
 	//選択済みのオブジェクトをクリックした場合
 	if (it != m_selectedIds.end())
 	{
 		//選択解除
 		m_selectedIds.erase(it);
+		m_selectedPos.erase(itPos);
 		//ハイライト解除
 		renderComp->SetHighlightState(RenderComponent::HighlightState::None);
 		return;

@@ -25,6 +25,7 @@ private:
 	float m_finalTime = 0.0f;
 	float m_uiAlpha = 0.0f;
 	float m_texAlpha = 0.0f;
+	float m_moveAlpha = 0.0f;
 	Math::Vector2 m_timerPos = {};
 	std::shared_ptr<KdTexture> m_clearTex;
 	bool m_showRank = false;
