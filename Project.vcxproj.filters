@@ -609,9 +609,6 @@
     <ClInclude Include="Src\Framework\Component\JumpBlockComponent\JumpBlockComponent.h">
       <Filter>Src\Framework\Component\JumpBlockComponent</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\ISubsystem.h">
-      <Filter>Src\Application</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\SettingsManager\SettingsManager.h">
       <Filter>Src\Application\SettingsManager</Filter>
     </ClInclude>

@@ -281,7 +281,6 @@
     <ClInclude Include="Src\Application\GameLogic\IStageObserver\IStageObserver.h" />
     <ClInclude Include="Src\Application\GameLogic\StageModel\StageModel.h" />
     <ClInclude Include="Src\Application\GameViewModel.h" />
-    <ClInclude Include="Src\Application\ISubsystem.h" />
     <ClInclude Include="Src\Application\JsonHelper\JsonHelper.h" />
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\Objects\Camera\CameraBase.h" />
