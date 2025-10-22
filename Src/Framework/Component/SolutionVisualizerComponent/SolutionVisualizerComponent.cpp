@@ -53,14 +53,12 @@ void SolutionVisualizerComponent::DrawLit()
 	const auto& steps = viewModel->GetSolutionSteps();
 	if (steps.empty())return;
 
-	KdShaderManager::Instance().ChangeDepthStencilState(KdDepthStencilState::ZDisable);
-
 	if (m_viewMode == SolutionViewMode::Static)
 	{
 		const auto& startState = viewModel->GetSolutionStartState();
 		if (startState.empty())
 		{
-			KdShaderManager::Instance().UndoDepthStencilState();
+			//KdShaderManager::Instance().UndoDepthStencilState();
 			return;
 		}
 
@@ -72,7 +70,10 @@ void SolutionVisualizerComponent::DrawLit()
 				const BlockState& toState = startState.at(step.toID);
 
 				Math::Matrix arrowMat = CalculateArrowMatrix(fromState.pos, toState.pos);
+
+				KdShaderManager::Instance().ChangeDepthStencilState(KdDepthStencilState::ZDisable);
 				KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spArrowModel[1], arrowMat);
+				KdShaderManager::Instance().UndoDepthStencilState();
 			}
 		}
 	}
@@ -101,14 +102,17 @@ void SolutionVisualizerComponent::DrawLit()
 
 				// 描画
 				Math::Matrix arrowMatA = CalculateArrowMatrixAnimation(fromTo, fromToDir);
+				KdShaderManager::Instance().ChangeDepthStencilState(KdDepthStencilState::ZDisable);
 				KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spArrowModel[0], arrowMatA);
+				KdShaderManager::Instance().UndoDepthStencilState();
 
 				Math::Matrix arrowMatB = CalculateArrowMatrixAnimation(toFrom, toFromDir);
+				KdShaderManager::Instance().ChangeDepthStencilState(KdDepthStencilState::ZDisable);
 				KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spArrowModel[0], arrowMatB);
+				KdShaderManager::Instance().UndoDepthStencilState();
 			}
 		}
 	}
-	KdShaderManager::Instance().UndoDepthStencilState();
 }
 
 void SolutionVisualizerComponent::SetShouldDraw(bool flg)

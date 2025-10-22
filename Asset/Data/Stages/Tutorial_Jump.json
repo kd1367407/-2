@@ -31,8 +31,8 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        -0.01190691627562046,
-                        -0.012398164719343185,
+                        -0.01190691813826561,
+                        -0.012398125603795052,
                         -4.334439277648926
                     ],
                     "rotation": [
@@ -796,11 +796,11 @@
                         1.0
                     ]
                 },
-                "TutorialTriggerComponent": {
-                    "BlockName": "ジャンプブロック",
-                    "ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
-                    "Text": "着地すると跳躍するブロックです。入れ替え可能。\n高い位置にある場所、離れた場所への移動に活用しましょう。"
-                }
+				"TutorialTriggerComponent": {
+					"BlockName": "ジャンプブロック",
+					"ImagePath": "Asset/Textures/UI/JumpBlock.png",
+					"Text": "着地すると跳躍するブロックです。入れ替え可能。\n高い位置にある場所、離れた場所への移動に活用しましょう。"
+				}
             },
             "name": "TutorialTrigger_0"
         },
