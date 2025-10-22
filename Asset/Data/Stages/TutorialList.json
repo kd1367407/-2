@@ -1,6 +1,10 @@
 {
     "stages": [
 		{
+			"label": "Tutorial_Operation",
+			"path": "Asset/Data/Stages/Tutorial_Operation.json"
+		},
+		{
 			"label": "Tutorial_Moving",
 			"path": "Asset/Data/Stages/Tutorial_Moving.json"
 		},
