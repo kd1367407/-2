@@ -1,859 +1,973 @@
 {
-	"entities": [
-		{
-			"archetype": "Player",
-			"components": {
-				"ColliderComponent": {
-					"layer": "LayerPlayer",
-					"offset": [
-						0.0,
-						0.5,
-						0.0
-					],
-					"radius": 0.5,
-					"shape": "shpere"
-				},
-				"MousePointerComponent": {
-					"texture": "Asset/Textures/UI/MousePointer.png"
-				},
-				"PlayerStatsComponent": {
-					"initialPos": [
-						0.0,
-						5.0,
-						0.0
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Player/player-1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "dynamic"
-				},
-				"TransformComponent": {
-					"position": [
-						0.33244138956069946,
-						-0.012398213148117065,
-						-4.443138122558594
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "Player"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						-2.0123982429504395,
-						-4.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_0"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						-2.0123982429504395,
-						-1.9073486328125e-06
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_1"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						-2.0123982429504395,
-						-1.9073486328125e-06
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_2"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						-2.0123982429504395,
-						-2.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_3"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						-2.0123982429504395,
-						-4.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_4"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						-2.0123982429504395,
-						-2.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_5"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						-2.0123982429504395,
-						-2.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_6"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						-2.0123982429504395,
-						-1.9073486328125e-06
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_7"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						-2.0123982429504395,
-						-4.000001907348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_8"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						0.19181954860687256,
-						12.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_9"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						0.19181954860687256,
-						12.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_10"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						0.19181954860687256,
-						12.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_11"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						0.19181954860687256,
-						14.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_12"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						0.19181954860687256,
-						14.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_13"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						0.19181954860687256,
-						16.78450584411621
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_14"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						0.19181954860687256,
-						16.78450584411621
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_15"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						2.0,
-						0.19181954860687256,
-						16.78450584411621
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_16"
-		},
-		{
-			"archetype": "WallBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Wall"
-				},
-				"ColliderComponent": {
-					"layer": [
-						"LayerGround",
-						"LayerBlock"
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						-2.0,
-						0.19181954860687256,
-						14.784505844116211
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "WallBlock_17"
-		},
-		{
-			"archetype": "MovingBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Moving"
-				},
-				"ColliderComponent": {
-					"layer": "LayerBlock",
-					"model": "Asset/Models/Block/Moving/COLMoving_proto.gltf",
-					"shape": "box"
-				},
-				"MovingBlockComponent": {
-					"active": true,
-					"duration": 4.0,
-					"endPos": [
-						0.0,
-						0.2556299567222595,
-						11.0
-					],
-					"startPos": [
-						0.0,
-						-1.9518041610717773,
-						2.0
-					]
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Moving/Moving_proto.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "kinematic"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						-0.7407671213150024,
-						6.937557220458984
-					],
-					"rotation": [
-						0.0,
-						0.0,
-						0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "MovingBlock_0"
-		},
-		{
-			"archetype": "GoalBlock",
-			"components": {
-				"BlockDataComponent": {
-					"type": "Goal"
-				},
-				"ColliderComponent": {
-					"layer": "LayerGround"
-				},
-				"RenderComponent": {
-					"model": "Asset/Models/Block/Goal/Goal_1.gltf"
-				},
-				"RigidbodyComponent": {
-					"type": "static"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						2.0,
-						17.0
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				}
-			},
-			"name": "GoalBlock_0"
-		},
-		{
-			"archetype": "TutorialTrigger",
-			"components": {
-				"BlockDataComponent": {
-					"type": "TutorialTrigger"
-				},
-				"ColliderComponent": {
-					"isTrigger": true,
-					"model": "Asset/Models/Block/Wall/COLWall_proto.gltf",
-					"shape": "box"
-				},
-				"TransformComponent": {
-					"position": [
-						0.0,
-						0.0,
-						-1.1144533157348633
-					],
-					"rotation": [
-						-0.0,
-						0.0,
-						-0.0
-					],
-					"scale": [
-						1.0,
-						1.0,
-						1.0
-					]
-				},
-				"TutorialTriggerComponent": {
-					"BlockName": "動くブロック",
-					"ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
-					"Text": "自動で往復する足場です。入れ替え可能。\nジャンプだけでは届かない、離れた足場へ渡るのに使いましょう。"
-				}
-			},
-			"name": "TutorialTrigger_0"
-		}
-	]
+    "entities": [
+        {
+            "archetype": "Player",
+            "components": {
+                "ColliderComponent": {
+                    "layer": "LayerPlayer",
+                    "offset": [
+                        0.0,
+                        0.5,
+                        0.0
+                    ],
+                    "radius": 0.5,
+                    "shape": "shpere"
+                },
+                "MousePointerComponent": {
+                    "texture": "Asset/Textures/UI/MousePointer.png"
+                },
+                "PlayerStatsComponent": {
+                    "initialPos": [
+                        0.0,
+                        5.0,
+                        0.0
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Player/player-1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "dynamic"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.09284835308790207,
+                        -0.012398142367601395,
+                        -4.131998538970947
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "Player"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.0123982429504395,
+                        -4.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_0"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.0123982429504395,
+                        -1.9073486328125e-06
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_1"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.0123982429504395,
+                        -1.9073486328125e-06
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_2"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.0123982429504395,
+                        -2.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_3"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.0123982429504395,
+                        -4.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_4"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.0123982429504395,
+                        -2.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_5"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.0123982429504395,
+                        -2.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_6"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.0123982429504395,
+                        -1.9073486328125e-06
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_7"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.0123982429504395,
+                        -4.000001907348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_8"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.2559499740600586,
+                        17.095149993896484
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_9"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.2559499740600586,
+                        17.095149993896484
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_10"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.2559499740600586,
+                        17.095149993896484
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_11"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.2559499740600586,
+                        19.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_12"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.2559499740600586,
+                        19.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_13"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.2559499740600586,
+                        21.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_14"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -2.2559499740600586,
+                        21.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_15"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        2.0,
+                        -2.2559499740600586,
+                        21.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_16"
+        },
+        {
+            "archetype": "WallBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Wall"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Wall/Wall_proto1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        -2.0,
+                        -2.2559499740600586,
+                        19.095151901245117
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "WallBlock_17"
+        },
+        {
+            "archetype": "GoalBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Goal"
+                },
+                "ColliderComponent": {
+                    "layer": "LayerGround"
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Goal/Goal_1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        -0.44776952266693115,
+                        21.310644149780273
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "GoalBlock_0"
+        },
+        {
+            "archetype": "TutorialTrigger",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "TutorialTrigger"
+                },
+                "ColliderComponent": {
+                    "isTrigger": true,
+                    "model": "Asset/Models/Block/Wall/COLWall_proto.gltf",
+                    "shape": "box"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        0.0,
+                        -1.1144533157348633
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "TutorialTriggerComponent": {
+                    "BlockName": "滑るブロック",
+                    "ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
+                    "Text": "滑るブロックです。入れ替え不可能。\n滑って落ちることがないようにしましょう。"
+                }
+            },
+            "name": "TutorialTrigger_0"
+        },
+        {
+            "archetype": "SlipperyBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Slippery"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "SlipperyComponent": {
+                    "drag_coefficient": 0.07999999821186066
+                },
+                "TransformComponent": {
+                    "position": [
+                        -0.8353112936019897,
+                        -1.7999999523162842,
+                        3.928983688354492
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "SlipperyBlock_0"
+        },
+        {
+            "archetype": "SlipperyBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Slippery"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "SlipperyComponent": {
+                    "drag_coefficient": 0.07999999821186066
+                },
+                "TransformComponent": {
+                    "position": [
+                        1.1418719291687012,
+                        -1.7999999523162842,
+                        3.9178125858306885
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "SlipperyBlock_1"
+        },
+        {
+            "archetype": "SlipperyBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Slippery"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "SlipperyComponent": {
+                    "drag_coefficient": 0.07999999821186066
+                },
+                "TransformComponent": {
+                    "position": [
+                        1.1418719291687012,
+                        -1.7999999523162842,
+                        9.70232105255127
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "SlipperyBlock_2"
+        },
+        {
+            "archetype": "SlipperyBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Slippery"
+                },
+                "ColliderComponent": {
+                    "layer": [
+                        "LayerGround",
+                        "LayerBlock"
+                    ]
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Slippery/Slippery_proto.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "static"
+                },
+                "SlipperyComponent": {
+                    "drag_coefficient": 0.07999999821186066
+                },
+                "TransformComponent": {
+                    "position": [
+                        -0.8353112936019897,
+                        -1.7999999523162842,
+                        9.713492393493652
+                    ],
+                    "rotation": [
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "SlipperyBlock_3"
+        }
+    ],
+    "parMoves": 0
 }
