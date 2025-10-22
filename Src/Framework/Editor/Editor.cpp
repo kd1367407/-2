@@ -75,6 +75,20 @@ void Editor::DrawHierarchyWindow(GameScene& scene)
 	}
 	ImGui::Separator();
 
+	//タイトルへ
+	if (ImGui::Button("Return Title"))
+	{
+		//保存関数呼び出し
+		scene.RequestSaveStage();
+
+		//アンドゥ履歴をリセット
+		scene.UndoClearFrimEditor();
+
+		//タイトルへ
+		SceneManager::Instance().ChangeScene(SceneManager::SceneType::Title);
+	}
+	ImGui::Separator();
+
 	//解法ビジュアライザー
 	ImGui::SeparatorText("Solution Path");
 

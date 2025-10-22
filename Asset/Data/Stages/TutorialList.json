@@ -15,6 +15,30 @@
 		{
 			"label": "Tutorial_Sinking",
 			"path": "Asset/Data/Stages/Tutorial_Sinking.json"
+		},
+		{
+			"label": "Tutorial_Rotating",
+			"path": "Asset/Data/Stages/Tutorial_Rotating.json"
+		},
+		{
+			"label": "Tutorial_Jump",
+			"path": "Asset/Data/Stages/Tutorial_Jump.json"
+		},
+		{
+			"label": "Tutorial_Scaling",
+			"path": "Asset/Data/Stages/Tutorial_Scaling.json"
+		},
+		{
+			"label": "Tutorial_Slippery",
+			"path": "Asset/Data/Stages/Tutorial_Slippery.json"
+		},
+		{
+			"label": "Tutorial_Transfer",
+			"path": "Asset/Data/Stages/Tutorial_Transfer.json"
+		},
+		{
+			"label": "Tutorial_Wall",
+			"path": "Asset/Data/Stages/Tutorial_Wall.json"
 		}
     ]
 }

@@ -1,15 +1,7 @@
 {
     "stages": [
         {
-            "label": "Training Stage",
-            "path": "Asset/Data/Stages/Stage00.json"
-        },
-        {
-            "label": "Stage 1",
-            "path": "Asset/Data/Stages/Stage01.json"
-        },
-        {
-            "label": "Tibikko",
+            "label": "Test",
             "path": "Asset/Data/Stages/TestStage.json"
         },
         {

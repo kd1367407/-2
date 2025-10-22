@@ -69,9 +69,9 @@ void ScalingBlockComponent::Update()
 	Math::Vector3 newScale = m_baseScale + (m_scaleAxis * m_scaleAmount * sinWave);
 
 	//スケールが0に以下にならないようにクランプ
-	newScale.x = std::max(newScale.x, 0.01f);
-	newScale.y = std::max(newScale.y, 0.01f);
-	newScale.z = std::max(newScale.z, 0.01f);
+	newScale.x = std::max(newScale.x, 0.5f);
+	newScale.y = std::max(newScale.y, 0.5f);
+	newScale.z = std::max(newScale.z, 0.5f);
 
 	float scaleDeltaY = newScale.y - m_lastScale.y;
 
