@@ -107,27 +107,27 @@ void TitleScene::DrawButtonWindow()
 	//新規作成のテンプレート選択UIが表示されている場合
 	if (m_showTemplateSelect)
 	{
-		if (ImGui::Button("Template 1", ImVec2(-1, 0)))
+		if (ImGui::Button("Foundation 1", ImVec2(-1, 0)))
 		{
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template01.json", "New Stage(Template 1)");
+			gm.SetNextStage("Asset/Data/Stages/Template01.json", "New Stage(Foundation 1)");
 			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
 		}
-		if (ImGui::Button("Template 2", ImVec2(-1, 0)))
+		if (ImGui::Button("Foundation 2", ImVec2(-1, 0)))
 		{
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template02.json", "New Stage(Template 2)");
+			gm.SetNextStage("Asset/Data/Stages/Template02.json", "New Stage(Foundation 2)");
 			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
 		}
-		if (ImGui::Button("Template 3", ImVec2(-1, 0)))
+		if (ImGui::Button("Foundation 3", ImVec2(-1, 0)))
 		{
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Template 3)");
+			gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Foundation 3)");
 			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
 		}

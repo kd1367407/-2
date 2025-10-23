@@ -69,20 +69,20 @@ void StageSelectScene::Draw()
 		ImGui::Spacing();
 		ImGui::Spacing();
 
-		/*if (GameManager::Instance().GetLoadMode() == GameManager::LoadMode::Play)
+		if (GameManager::Instance().GetLoadMode() == GameManager::LoadMode::Play)
 		{
 			if (ImGui::Button("Tutorials", ImVec2(-1, 0)))
 			{
 				m_currentView = ViewMode::Tutorial;
 				KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			}
-		}*/
-		//後で絶対に戻す
-		if (ImGui::Button("Tutorials", ImVec2(-1, 0)))
-		{
-			m_currentView = ViewMode::Tutorial;
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 		}
+		////後で絶対に戻す
+		//if (ImGui::Button("Tutorials", ImVec2(-1, 0)))
+		//{
+		//	m_currentView = ViewMode::Tutorial;
+		//	KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+		//}
 
 		if (ImGui::Button("Back To Title", ImVec2(-1, 0)))
 		{
