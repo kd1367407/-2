@@ -796,11 +796,11 @@
                         1.0
                     ]
                 },
-                "TutorialTriggerComponent": {
-                    "BlockName": "滑るブロック",
-                    "ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
-                    "Text": "滑るブロックです。入れ替え不可能。\n滑って落ちることがないようにしましょう。"
-                }
+				"TutorialTriggerComponent": {
+					"BlockName": "滑るブロック",
+					"ImagePath": "Asset/Textures/UI/SlipperyBlock.png",
+					"Text": "滑るブロックです。入れ替え不可能。\n滑って落ちることがないようにしましょう。"
+				}
             },
             "name": "TutorialTrigger_0"
         },

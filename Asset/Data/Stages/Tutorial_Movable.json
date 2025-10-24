@@ -796,11 +796,11 @@
                         1.0
                     ]
                 },
-                "TutorialTriggerComponent": {
-                    "BlockName": "入れ替えブロック",
-                    "ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
-                    "Text": "自動で往復する足場です。\nジャンプだけでは届かない、離れた足場へ渡るのに使いましょう。"
-                }
+				"TutorialTriggerComponent": {
+					"BlockName": "入れ替えブロック",
+					"ImagePath": "Asset/Textures/UI/MovableBlock.png",
+					"Text": "自動で往復する足場です。\nジャンプだけでは届かない、離れた足場へ渡るのに使いましょう。"
+				}
             },
             "name": "TutorialTrigger_0"
         },

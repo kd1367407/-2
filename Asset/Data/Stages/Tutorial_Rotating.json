@@ -796,11 +796,11 @@
                         1.0
                     ]
                 },
-                "TutorialTriggerComponent": {
-                    "BlockName": "回転するブロック",
-                    "ImagePath": "Asset/Textures/UI/MovingBlockTex.png",
-                    "Text": "着地すると回転するブロックです。入れ替え可能。\n回転を活かしましょう。"
-                }
+				"TutorialTriggerComponent": {
+					"BlockName": "回転するブロック",
+					"ImagePath": "Asset/Textures/UI/RotatingBlock.png",
+					"Text": "着地すると回転するブロックです。入れ替え可能。\n回転を活かしましょう。"
+				}
             },
             "name": "TutorialTrigger_0"
         },
