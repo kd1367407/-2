@@ -17,6 +17,7 @@ private:
 
 	float m_titleAlpha = 0.0f;
 	float m_buttonAlpha = 0.0f;
+	Math::Vector2 m_playButtonPos = {};
 
 	std::shared_ptr<KdTexture> m_titleTex;
 	std::shared_ptr<KdTexture> m_playButtonTex;

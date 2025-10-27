@@ -15,6 +15,8 @@ void TitleScene::Init()
 	m_playButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/PlayButtonKari.png");
 	m_createButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/CreateButtonKari.png");
 
+	m_playButtonPos = { 0,0 };
+
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
 	backgroundObj->SetName("Background");
@@ -46,19 +48,39 @@ void TitleScene::SceneUpdate()
 
 	m_titleAlpha = std::min(m_titleAlpha, 1.0f);
 	m_buttonAlpha = std::min(m_buttonAlpha, 1.0f);
+
+
+	long buttonX = m_playButtonPos.x+500;
+	long buttonY = m_playButtonPos.y+300;
+	long buttonWidth = m_playButtonTex->GetInfo().Width;
+	long buttonHeight = m_playButtonTex->GetInfo().Height;
+
+	Math::Rectangle buttonAngle(buttonX, buttonY, buttonWidth, buttonHeight);
+
+	POINT mousePos;
+	GetCursorPos(&mousePos);
+
+	bool isMouseOver = buttonAngle.Contains(static_cast<long>(mousePos.x), static_cast<long>(mousePos.y));
+
+	if (isMouseOver && KdInputManager::Instance().IsPress("Select"))
+	{
+		GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
+		SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+	}
 }
 
 void TitleScene::Draw()
 {
 	BaseScene::Draw();
-	DrawTitleWindow();
-	DrawButtonWindow();
+	/*DrawTitleWindow();
+	DrawButtonWindow();*/
 }
 
 void TitleScene::DrawSprite()
 {
 	BaseScene::DrawSprite();
 	DrawTitleWindow();
+	DrawNormalButton();
 }
 
 void TitleScene::Release()
@@ -72,33 +94,33 @@ void TitleScene::Release()
 
 void TitleScene::DrawTitleWindow()
 {
-	//ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_titleAlpha);//透明度はm_titleAlphaを使う(ウィンドウ、テキストなど全て)
-	//ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
-	//ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_titleAlpha);//透明度はm_titleAlphaを使う(ウィンドウ、テキストなど全て)
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
 
-	////画面上の方の中央に設置
-	//const ImGuiViewport* viewport = ImGui::GetMainViewport();
-	//ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 300), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+	//画面上の方の中央に設置
+	const ImGuiViewport* viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 300), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
-	//ImGui::Begin("TitleText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+	ImGui::Begin("TitleText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 
-	//if (m_titleTex)
-	//{
-	//	ImTextureID texID = m_titleTex->WorkSRView();
-	//	ImVec2 texSize = ImVec2((float)m_titleTex->GetInfo().Width, (float)m_titleTex->GetInfo().Height);
-	//	ImGui::Image(texID, texSize);
-	//}
+	if (m_titleTex)
+	{
+		ImTextureID texID = m_titleTex->WorkSRView();
+		ImVec2 texSize = ImVec2((float)m_titleTex->GetInfo().Width, (float)m_titleTex->GetInfo().Height);
+		ImGui::Image(texID, texSize);
+	}
 
-	//ImGui::End();
+	ImGui::End();
 
-	//ImGui::PopStyleColor(2);
-	//ImGui::PopStyleVar();
+	ImGui::PopStyleColor(2);
+	ImGui::PopStyleVar();
 
-	Math::Color color = { 1,1,1,m_titleAlpha };
+	/*Math::Color color = { 1,1,1,m_titleAlpha };
 	if (m_titleTex)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(m_titleTex.get(), 0, 0, nullptr, &color);
-	}
+	}*/
 }
 
 void TitleScene::DrawButtonWindow()
@@ -245,16 +267,9 @@ void TitleScene::DrawButtonWindow()
 
 void TitleScene::DrawNormalButton()
 {
-	float playButtonX = 300.0f;
-	float playButtonY = 400.0f;
-
-	float playButtonWidth = m_playButtonTex->GetInfo().Width;
-	float playButtonHeight = m_playButtonTex->GetInfo().Height;
-
-	float playWidthHalf = playButtonWidth / 2;
-
-	float playButtonLeft = playButtonX;
-	float playButtonRight = playButtonX + playButtonWidth;
-	float playButtonTop = playButtonY;
-	float playButtonButtom = playButtonY + playButtonHeight;
+	Math::Color color = { 1,1,1,m_buttonAlpha };
+	if (m_playButtonTex)
+	{
+		KdShaderManager::Instance().m_spriteShader.DrawTex(m_playButtonTex.get(), m_playButtonPos.x, m_playButtonPos.y, nullptr, &color);
+	}
 }
