@@ -4695,16 +4695,16 @@
                 },
                 "MovingBlockComponent": {
                     "active": true,
-                    "duration": 2.0,
+                    "duration": 4.0,
                     "endPos": [
-                        9.991340637207031,
+                        6.213900566101074,
                         2.0,
-                        -3.592977523803711
+                        0.0
                     ],
                     "startPos": [
-                        4.9913411140441895,
+                        1.2139005661010742,
                         2.0,
-                        -4.5681257247924805
+                        0.0
                     ]
                 },
                 "RenderComponent": {
@@ -4715,9 +4715,9 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        9.971627235412598,
+                        3.0296311378479004,
                         2.0,
-                        -3.5968222618103027
+                        0.0
                     ],
                     "rotation": [
                         0.0,
@@ -4731,42 +4731,7 @@
                     ]
                 }
             },
-            "name": "MovingBlock_0"
-        },
-        {
-            "archetype": "MovableBlock",
-            "components": {
-                "BlockDataComponent": {
-                    "type": "Movable"
-                },
-                "ColliderComponent": {
-                    "layer": "LayerBlock"
-                },
-                "RenderComponent": {
-                    "model": "Asset/Models/Block/Movable/Movable_1.gltf"
-                },
-                "RigidbodyComponent": {
-                    "type": "kinematic"
-                },
-                "TransformComponent": {
-                    "position": [
-                        -9.447298049926758,
-                        0.0,
-                        0.0
-                    ],
-                    "rotation": [
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    "scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ]
-                }
-            },
-            "name": "MovableBlock_0"
+            "name": "MovingBlock_1"
         },
         {
             "archetype": "JumpBlock",
@@ -4793,9 +4758,9 @@
                 },
                 "TransformComponent": {
                     "position": [
+                        -8.541840553283691,
                         0.0,
-                        0.0,
-                        5.887901306152344
+                        4.886189937591553
                     ],
                     "rotation": [
                         -0.0,
@@ -4812,5 +4777,5 @@
             "name": "JumpBlock_0"
         }
     ],
-    "parMoves": 2
+    "parMoves": 1
 }

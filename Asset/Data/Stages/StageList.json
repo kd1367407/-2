@@ -11,6 +11,10 @@
         {
             "label": "Athletic",
             "path": "Asset/Data/Stages/Stage03.json"
+        },
+        {
+            "label": "hosino",
+            "path": "Asset/Data/Stages/Stage00.json"
         }
     ]
 }

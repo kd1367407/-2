@@ -12,6 +12,8 @@ void TitleScene::Init()
 	m_showTemplateSelect = false;
 
 	m_titleTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/Title2.png");
+	m_playButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/PlayButtonKari.png");
+	m_createButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/CreateButtonKari.png");
 
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
@@ -53,6 +55,12 @@ void TitleScene::Draw()
 	DrawButtonWindow();
 }
 
+void TitleScene::DrawSprite()
+{
+	BaseScene::DrawSprite();
+	DrawTitleWindow();
+}
+
 void TitleScene::Release()
 {
 	if (m_spBGM && m_spBGM->IsPlaying())
@@ -64,27 +72,33 @@ void TitleScene::Release()
 
 void TitleScene::DrawTitleWindow()
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_titleAlpha);//透明度はm_titleAlphaを使う(ウィンドウ、テキストなど全て)
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
-	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+	//ImGui::PushStyleVar(ImGuiStyleVar_Alpha, m_titleAlpha);//透明度はm_titleAlphaを使う(ウィンドウ、テキストなど全て)
+	//ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+	//ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
 
-	//画面上の方の中央に設置
-	const ImGuiViewport* viewport = ImGui::GetMainViewport();
-	ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 300), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+	////画面上の方の中央に設置
+	//const ImGuiViewport* viewport = ImGui::GetMainViewport();
+	//ImGui::SetNextWindowPos(ImVec2(viewport->GetCenter().x, viewport->WorkPos.y + 300), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
-	ImGui::Begin("TitleText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+	//ImGui::Begin("TitleText", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 
+	//if (m_titleTex)
+	//{
+	//	ImTextureID texID = m_titleTex->WorkSRView();
+	//	ImVec2 texSize = ImVec2((float)m_titleTex->GetInfo().Width, (float)m_titleTex->GetInfo().Height);
+	//	ImGui::Image(texID, texSize);
+	//}
+
+	//ImGui::End();
+
+	//ImGui::PopStyleColor(2);
+	//ImGui::PopStyleVar();
+
+	Math::Color color = { 1,1,1,m_titleAlpha };
 	if (m_titleTex)
 	{
-		ImTextureID texID = m_titleTex->WorkSRView();
-		ImVec2 texSize = ImVec2((float)m_titleTex->GetInfo().Width, (float)m_titleTex->GetInfo().Height);
-		ImGui::Image(texID, texSize);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(m_titleTex.get(), 0, 0, nullptr, &color);
 	}
-
-	ImGui::End();
-
-	ImGui::PopStyleColor(2);
-	ImGui::PopStyleVar();
 }
 
 void TitleScene::DrawButtonWindow()
@@ -227,4 +241,20 @@ void TitleScene::DrawButtonWindow()
 
 	ImGui::PopStyleColor(5);
 	ImGui::PopStyleVar();
+}
+
+void TitleScene::DrawNormalButton()
+{
+	float playButtonX = 300.0f;
+	float playButtonY = 400.0f;
+
+	float playButtonWidth = m_playButtonTex->GetInfo().Width;
+	float playButtonHeight = m_playButtonTex->GetInfo().Height;
+
+	float playWidthHalf = playButtonWidth / 2;
+
+	float playButtonLeft = playButtonX;
+	float playButtonRight = playButtonX + playButtonWidth;
+	float playButtonTop = playButtonY;
+	float playButtonButtom = playButtonY + playButtonHeight;
 }
