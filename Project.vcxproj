@@ -300,6 +300,7 @@
     <ClInclude Include="Src\Application\SolutionRecorder\SolutionRecorder.h" />
     <ClInclude Include="Src\Application\StageListManager\StageListManager.h" />
     <ClInclude Include="Src\Application\System\PhysicsSystem.h" />
+    <ClInclude Include="Src\Application\UIHelpers\UIHelpers.h" />
     <ClInclude Include="Src\Framework\Command\BlockStateChangeCommand\BlockStateChangeCommand.h" />
     <ClInclude Include="Src\Framework\Command\Command.h" />
     <ClInclude Include="Src\Framework\Command\CommandInvoker\CommandInvoker.h" />
@@ -425,6 +426,7 @@
     <ClCompile Include="Src\Application\SettingsManager\SettingsManager.cpp" />
     <ClCompile Include="Src\Application\StageListManager\StageListManager.cpp" />
     <ClCompile Include="Src\Application\System\PhysicsSystem.cpp" />
+    <ClCompile Include="Src\Application\UIHelpers\UIHelpers.cpp" />
     <ClCompile Include="Src\Framework\Command\BlockStateChangeCommand\BlockStateChangeCommand.cpp" />
     <ClCompile Include="Src\Framework\Command\CommandInvoker\CommandInvoker.cpp" />
     <ClCompile Include="Src\Framework\Command\CreateObjectCommand\CreateObjectCommand.cpp" />
