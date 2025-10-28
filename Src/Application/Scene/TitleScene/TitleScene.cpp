@@ -21,6 +21,10 @@ void TitleScene::Init()
 	m_foundation2ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template2Kari.png");
 	m_foundation3ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template3Kari.png");
 	m_backButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/BackButtonKari.png");
+	m_volumeButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/VolumeButtonKari.png");
+	m_BGMSliderTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/BGMsliderKari.png");
+	m_SESliderTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/SEsliderKari.png");
+	m_knobTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/knobKari.png");
 
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
@@ -43,6 +47,13 @@ void TitleScene::Init()
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			m_currentState = MenuState::Create;
+		}
+	);
+
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -200), m_volumeButtonTex,
+		[this]() {
+			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+			m_currentState = MenuState::Volume;
 		}
 	);
 
@@ -99,6 +110,37 @@ void TitleScene::Init()
 		}
 	);
 
+	//--sound--
+	m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, 0), m_BGMSliderTex, m_knobTex,
+		[this](float newVolume) {
+			KdAudioManager::Instance().SetBGMVolume(newVolume);
+		}
+	);
+
+	m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, -100), m_SESliderTex, m_knobTex,
+		[this](float newVolume) {
+			KdAudioManager::Instance().SetSEVolume(newVolume);
+		}
+	);
+
+	m_buttons[MenuState::Volume].emplace_back(Math::Vector2(0, -300), m_backButtonTex,
+		[this]() {
+			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+
+			//書き込み可能なjsonオブジェクトを取得
+			nlohmann::json& settings = SettingsManager::Instance().WorkGameSetting();
+
+			//"volume_settings"の値を上書き
+			settings["volume_settings"]["SE"] = KdAudioManager::Instance().GetSEVolume();
+			settings["volume_settings"]["BGM"] = KdAudioManager::Instance().GetBGMVolume();
+
+			//save指示(変更したjsonをファイルに書き出し)
+			SettingsManager::Instance().SaveGameSetting();
+
+			m_currentState = MenuState::Main;
+		}
+	);
+
 	m_currentState = MenuState::Main;
 }
 
@@ -128,6 +170,14 @@ void TitleScene::SceneUpdate()
 	{
 		button.Update();
 	}
+
+	if (m_currentState == MenuState::Volume)
+	{
+		for (auto& slider : m_sliders[m_currentState])
+		{
+			slider.Update();
+		}
+	}
 }
 
 void TitleScene::Draw()
@@ -145,6 +195,14 @@ void TitleScene::DrawSprite()
 	for (auto& button : m_buttons[m_currentState])
 	{
 		button.Draw(m_buttonAlpha);
+	}
+
+	if (m_currentState == MenuState::Volume)
+	{
+		for (auto& slider : m_sliders[m_currentState])
+		{
+			slider.Draw(1.0f);
+		}
 	}
 }
 

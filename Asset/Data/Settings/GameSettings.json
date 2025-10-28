@@ -15,8 +15,8 @@
         "move_force": 15.0
     },
     "volume_settings": {
-        "BGM": 0.0,
-        "SE": 0.0
+        "BGM": 0.13199999928474426,
+        "SE": 0.14399999380111694
     },
     "world_settings": {
         "fall_time_limit": 5.0,

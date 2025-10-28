@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include"../BaseScene/BaseScene.h"
 #include"../Button/Button.h"
+#include"../Slider/Slider.h"
 
 class TitleScene:public BaseScene
 {
@@ -36,9 +37,14 @@ private:
 	std::shared_ptr<KdTexture> m_foundation2ButtonTex;
 	std::shared_ptr<KdTexture> m_foundation3ButtonTex;
 	std::shared_ptr<KdTexture> m_backButtonTex;
+	std::shared_ptr<KdTexture> m_volumeButtonTex;
+	std::shared_ptr<KdTexture> m_BGMSliderTex;
+	std::shared_ptr<KdTexture> m_SESliderTex;
+	std::shared_ptr<KdTexture> m_knobTex;
 	bool m_showTemplateSelect = false;//新規作成のテンプレート選択UIの状態
 	bool m_showVolume = false;
 
 	std::map<MenuState, std::vector<Button>> m_buttons;
+	std::map<MenuState, std::vector<Slider>> m_sliders;
 	MenuState m_currentState;
 };
