@@ -5,6 +5,7 @@
 #include"../Src/Framework/Component/BackgroundComponent/BackgroundComponent.h"
 #include"../../main.h"
 #include"../../SettingsManager/SettingsManager.h"
+#include"../Button/Button.h"
 
 void TitleScene::Init()
 {
@@ -14,8 +15,11 @@ void TitleScene::Init()
 	m_titleTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/UI/Title2.png");
 	m_playButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/PlayButtonKari.png");
 	m_createButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/CreateButtonKari.png");
-
-	m_playButtonPos = { 0,0 };
+	m_editButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/CreateExistingStageKari.png");
+	m_newButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/CreateNewStage.png");
+	m_foundation1ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template1Kari.png");
+	m_foundation2ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template2Kari.png");
+	m_foundation3ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template3Kari.png");
 
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
@@ -25,6 +29,69 @@ void TitleScene::Init()
 	backgroundObj->Init();
 
 	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
+
+	//--通常メニュー--
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, 0), m_playButtonTex,
+		[this]() {
+			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
+			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+		}
+	);
+
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -100), m_createButtonTex,
+		[this]() {
+			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+			m_currentState = MenuState::Create;
+		}
+	);
+
+	//--ステージ作成メニュー--
+	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, 0), m_editButtonTex,
+		[this]() {
+			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Edit);
+			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+		}
+	);
+
+	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, -100), m_newButtonTex,
+		[this]() {
+			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+			m_currentState = MenuState::NewStage;
+		}
+	);
+
+	//--ステージ土台メニュー--
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, 0), m_foundation1ButtonTex,
+		[this]() {
+			auto& gm = GameManager::Instance();
+			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+			gm.SetNextStage("Asset/Data/Stages/Template01.json", "New Stage(Foundation 1)");
+			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+		}
+	);
+
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -100), m_foundation2ButtonTex,
+		[this]() {
+			auto& gm = GameManager::Instance();
+			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+			gm.SetNextStage("Asset/Data/Stages/Template02.json", "New Stage(Foundation 2)");
+			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+		}
+	);
+
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -200), m_foundation3ButtonTex,
+		[this]() {
+			auto& gm = GameManager::Instance();
+			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+			gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Foundation 3)");
+			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+		}
+	);
+
+	m_currentState = MenuState::Main;
 }
 
 void TitleScene::SceneUpdate()
@@ -49,23 +116,9 @@ void TitleScene::SceneUpdate()
 	m_titleAlpha = std::min(m_titleAlpha, 1.0f);
 	m_buttonAlpha = std::min(m_buttonAlpha, 1.0f);
 
-
-	long buttonX = m_playButtonPos.x+500;
-	long buttonY = m_playButtonPos.y+300;
-	long buttonWidth = m_playButtonTex->GetInfo().Width;
-	long buttonHeight = m_playButtonTex->GetInfo().Height;
-
-	Math::Rectangle buttonAngle(buttonX, buttonY, buttonWidth, buttonHeight);
-
-	POINT mousePos;
-	GetCursorPos(&mousePos);
-
-	bool isMouseOver = buttonAngle.Contains(static_cast<long>(mousePos.x), static_cast<long>(mousePos.y));
-
-	if (isMouseOver && KdInputManager::Instance().IsPress("Select"))
+	for (auto& button : m_buttons[m_currentState])
 	{
-		GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
-		SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+		button.Update();
 	}
 }
 
@@ -80,7 +133,11 @@ void TitleScene::DrawSprite()
 {
 	BaseScene::DrawSprite();
 	DrawTitleWindow();
-	DrawNormalButton();
+
+	for (auto& button : m_buttons[m_currentState])
+	{
+		button.Draw(m_buttonAlpha);
+	}
 }
 
 void TitleScene::Release()
@@ -263,13 +320,4 @@ void TitleScene::DrawButtonWindow()
 
 	ImGui::PopStyleColor(5);
 	ImGui::PopStyleVar();
-}
-
-void TitleScene::DrawNormalButton()
-{
-	Math::Color color = { 1,1,1,m_buttonAlpha };
-	if (m_playButtonTex)
-	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(m_playButtonTex.get(), m_playButtonPos.x, m_playButtonPos.y, nullptr, &color);
-	}
 }

@@ -286,6 +286,9 @@
     <Filter Include="Src\Framework\Component\BackgroundComponent">
       <UniqueIdentifier>{0e6ed8b0-a7ae-40e5-b9f9-a4affb1b7018}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\Button">
+      <UniqueIdentifier>{83fd47c4-c9d1-401d-9ba3-edc8e09d45d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -687,6 +690,9 @@
     <ClInclude Include="Src\Framework\Component\BackgroundComponent\BackgroundComponent.h">
       <Filter>Src\Framework\Component\BackgroundComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\Button\Button.h">
+      <Filter>Src\Application\Scene\Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -1009,6 +1015,9 @@
     </ClCompile>
     <ClCompile Include="Src\Framework\Component\BackgroundComponent\BackgroundComponent.cpp">
       <Filter>Src\Framework\Component\BackgroundComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\Button\Button.cpp">
+      <Filter>Src\Application\Scene\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

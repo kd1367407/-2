@@ -287,6 +287,7 @@
     <ClInclude Include="Src\Application\Objects\Camera\FPSCamera\FPSCamera.h" />
     <ClInclude Include="Src\Application\Objects\Camera\TPSCamera\TPSCamera.h" />
     <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h" />
+    <ClInclude Include="Src\Application\Scene\Button\Button.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\GameManager\GameManager.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\GameScene.h" />
     <ClInclude Include="Src\Application\Scene\ResultScene\ResultScene.h" />
@@ -411,6 +412,7 @@
     <ClCompile Include="Src\Application\Objects\Camera\FPSCamera\FPSCamera.cpp" />
     <ClCompile Include="Src\Application\Objects\Camera\TPSCamera\TPSCamera.cpp" />
     <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp" />
+    <ClCompile Include="Src\Application\Scene\Button\Button.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\GameManager\GameManager.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Src\Application\Scene\ResultScene\ResultScene.cpp" />
