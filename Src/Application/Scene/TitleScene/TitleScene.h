@@ -35,6 +35,7 @@ private:
 	std::shared_ptr<KdTexture> m_foundation1ButtonTex;
 	std::shared_ptr<KdTexture> m_foundation2ButtonTex;
 	std::shared_ptr<KdTexture> m_foundation3ButtonTex;
+	std::shared_ptr<KdTexture> m_backButtonTex;
 	bool m_showTemplateSelect = false;//新規作成のテンプレート選択UIの状態
 	bool m_showVolume = false;
 

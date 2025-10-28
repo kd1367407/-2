@@ -20,6 +20,7 @@ void TitleScene::Init()
 	m_foundation1ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template1Kari.png");
 	m_foundation2ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template2Kari.png");
 	m_foundation3ButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/Template3Kari.png");
+	m_backButtonTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/BackButtonKari.png");
 
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
@@ -88,6 +89,13 @@ void TitleScene::Init()
 			gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Foundation 3)");
 			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+		}
+	);
+
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -300), m_backButtonTex,
+		[this]() {
+			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+			m_currentState = MenuState::Main;
 		}
 	);
 
