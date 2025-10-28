@@ -293,6 +293,7 @@
     <ClInclude Include="Src\Application\Scene\ResultScene\ResultScene.h" />
     <ClInclude Include="Src\Application\Scene\SceneFader\SceneFader.h" />
     <ClInclude Include="Src\Application\Scene\SceneManager.h" />
+    <ClInclude Include="Src\Application\Scene\Slider\Slider.h" />
     <ClInclude Include="Src\Application\Scene\StageSelectScene\StageSelectScene.h" />
     <ClInclude Include="Src\Application\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="Src\Application\SettingsManager\SettingsManager.h" />
@@ -418,6 +419,7 @@
     <ClCompile Include="Src\Application\Scene\ResultScene\ResultScene.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneFader\SceneFader.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
+    <ClCompile Include="Src\Application\Scene\Slider\Slider.cpp" />
     <ClCompile Include="Src\Application\Scene\StageSelectScene\StageSelectScene.cpp" />
     <ClCompile Include="Src\Application\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\Application\SettingsManager\SettingsManager.cpp" />

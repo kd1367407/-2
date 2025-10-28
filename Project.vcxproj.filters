@@ -289,6 +289,9 @@
     <Filter Include="Src\Application\Scene\Button">
       <UniqueIdentifier>{83fd47c4-c9d1-401d-9ba3-edc8e09d45d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\Slider">
+      <UniqueIdentifier>{330dd493-5cd7-4706-9261-53f8fa4fa8ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -693,6 +696,9 @@
     <ClInclude Include="Src\Application\Scene\Button\Button.h">
       <Filter>Src\Application\Scene\Button</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\Slider\Slider.h">
+      <Filter>Src\Application\Scene\Slider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -1018,6 +1024,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\Button\Button.cpp">
       <Filter>Src\Application\Scene\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\Slider\Slider.cpp">
+      <Filter>Src\Application\Scene\Slider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
