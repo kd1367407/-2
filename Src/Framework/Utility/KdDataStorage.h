@@ -94,6 +94,7 @@ public:
 	// それぞれのアセット
 	KdDataStorage<KdTexture>	m_textures;
 	KdDataStorage<KdModelData>	m_modeldatas;
+	//KdDataStorage<
 
 	static KdAssets& Instance()
 	{
