@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <SpriteFont.h>
 
 //===================================================
 //
@@ -109,6 +110,8 @@ public:
 		DrawTex(tex.lock().get(), x, y, tex.lock().get()->GetInfo().Width, tex.lock().get()->GetInfo().Height, srcRect, color, pivot);
 	}
 
+	void DrawString(DirectX::SpriteFont* font, const char* text, float x, float y, const Math::Color* color = nullptr, float rotation = 0.0f, const Math::Vector2* origin = nullptr, float scale = 1.0f);
+
 	// 点を描画
 	// ・x				… 点のX座標
 	// ・y				… 点のY座標
@@ -160,6 +163,8 @@ private:
 	ID3D11InputLayout*		m_VLayout = nullptr;		// 頂点レイアウト
 
 	ID3D11PixelShader*		m_PS = nullptr;				// ピクセルシェーダー
+
+	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 
 	// 定数バッファ
 	struct cbSprite {

@@ -68,6 +68,6 @@ void Button::Draw(float baseAlpha)
 		float textPosX = m_pos.x - (labelX / 2.0f);
 		float textPosY = m_pos.y - (labelY / 2.0f);
 
-		
+		KdShaderManager::Instance().m_spriteShader.DrawString(m_spFont.get(), m_label.c_str(), textPosX, textPosY, &textColor);
 	}
 }

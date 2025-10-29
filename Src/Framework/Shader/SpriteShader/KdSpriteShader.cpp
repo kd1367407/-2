@@ -199,6 +199,17 @@ void KdSpriteShader::DrawTex(const KdTexture* tex, int x, int y, int w, int h, c
 	if (!bBgn)End();
 }
 
+void KdSpriteShader::DrawString(DirectX::SpriteFont* font, const char* text, float x, float y, const Math::Color* color, float rotation, const Math::Vector2* origin, float scale)
+{
+	if (!m_spriteBatch || !font)return;
+
+	//デフォルト値設定
+	Math::Color finalColor = color ? *color : Math::Color(1, 1, 1, 1);
+	Math::Vector2 finalOrigin = origin ? *origin : Math::Vector2(0, 0);
+
+	font->DrawString(m_spriteBatch.get(), text, Math::Vector2(x, y), finalColor, rotation, finalOrigin, scale);
+}
+
 void KdSpriteShader::DrawPoint(int x, int y, const Math::Color* color)
 {
 	// もし開始していない場合は開始する(最後にEnd())

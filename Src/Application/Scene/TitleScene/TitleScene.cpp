@@ -26,6 +26,9 @@ void TitleScene::Init()
 	m_SESliderTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/SEsliderKari.png");
 	m_knobTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/knobKari.png");
 
+	//フォントロード
+	//auto spFont = KdAssets::Instance()
+
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();
 	backgroundObj->SetName("Background");
@@ -36,21 +39,21 @@ void TitleScene::Init()
 	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 
 	//--通常メニュー--
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, 0), m_playButtonTex,
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, 0), m_playButtonTex, spFont, "",
 		[this]() {
 			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
 		}
 	);
 
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -100), m_createButtonTex,
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -100), m_createButtonTex, spFont, "",
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			m_currentState = MenuState::Create;
 		}
 	);
 
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -200), m_volumeButtonTex,
+	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -200), m_volumeButtonTex, spFont, "",
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			m_currentState = MenuState::Volume;
@@ -58,14 +61,14 @@ void TitleScene::Init()
 	);
 
 	//--ステージ作成メニュー--
-	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, 0), m_editButtonTex,
+	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, 0), m_editButtonTex, spFont, "",
 		[this]() {
 			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Edit);
 			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
 		}
 	);
 
-	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, -100), m_newButtonTex,
+	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, -100), m_newButtonTex, spFont, "",
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			m_currentState = MenuState::NewStage;
@@ -73,7 +76,7 @@ void TitleScene::Init()
 	);
 
 	//--ステージ土台メニュー--
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, 0), m_foundation1ButtonTex,
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, 0), m_foundation1ButtonTex, spFont, "",
 		[this]() {
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
@@ -83,7 +86,7 @@ void TitleScene::Init()
 		}
 	);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -100), m_foundation2ButtonTex,
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -100), m_foundation2ButtonTex, spFont, "",
 		[this]() {
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
@@ -93,7 +96,7 @@ void TitleScene::Init()
 		}
 	);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -200), m_foundation3ButtonTex,
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -200), m_foundation3ButtonTex, spFont, "",
 		[this]() {
 			auto& gm = GameManager::Instance();
 			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
@@ -103,7 +106,7 @@ void TitleScene::Init()
 		}
 	);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -300), m_backButtonTex,
+	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 			m_currentState = MenuState::Main;
@@ -123,7 +126,7 @@ void TitleScene::Init()
 		}
 	);
 
-	m_buttons[MenuState::Volume].emplace_back(Math::Vector2(0, -300), m_backButtonTex,
+	m_buttons[MenuState::Volume].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
 		[this]() {
 			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 
