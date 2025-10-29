@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include"../Utility/MyFont/MyFont.h"
 
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
 // アセットを取り出し可能な状態で保持するクラス
@@ -94,7 +95,7 @@ public:
 	// それぞれのアセット
 	KdDataStorage<KdTexture>	m_textures;
 	KdDataStorage<KdModelData>	m_modeldatas;
-	//KdDataStorage<
+	KdDataStorage<MyFont>		m_fonts;
 
 	static KdAssets& Instance()
 	{
@@ -106,6 +107,7 @@ public:
 	{
 		m_textures.ClearData(force);
 		m_modeldatas.ClearData(force);
+		m_fonts.ClearData(force);
 	}
 
 private:

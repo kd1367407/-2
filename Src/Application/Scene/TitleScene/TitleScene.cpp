@@ -27,7 +27,7 @@ void TitleScene::Init()
 	m_knobTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/knobKari.png");
 
 	//フォントロード
-	//auto spFont = KdAssets::Instance()
+	auto spFont = KdAssets::Instance().m_fonts.GetData("Asset/Font/NotoSansJP-Regular.ttf");
 
 	//背景
 	auto backgroundObj = std::make_shared<GameObject>();

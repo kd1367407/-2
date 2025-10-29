@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include"../Inc/SpriteFont.h"
 
 class MyFont
 {
@@ -7,6 +8,8 @@ public:
 	~MyFont() { Release(); }
 
 	bool Load(std::string_view fileName);
+
+	DirectX::XMVECTOR MeasureString(const char* text) const;
 
 	void Release() { m_spFont.reset(); }
 

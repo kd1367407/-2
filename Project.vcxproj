@@ -387,6 +387,7 @@
     <ClInclude Include="Src\Framework\Utility\KdCSVData.h" />
     <ClInclude Include="Src\Framework\Utility\KdFPSController.h" />
     <ClInclude Include="Src\Framework\Utility\KdRandom.h" />
+    <ClInclude Include="Src\Framework\Utility\MyFont\MyFont.h" />
     <ClInclude Include="src\Pch.h" />
     <ClInclude Include="Src\Framework\Math\KdAnimation.h" />
     <ClInclude Include="Src\Framework\Math\KdCollision.h" />
@@ -504,6 +505,7 @@
     <ClCompile Include="Src\Framework\Utility\Debug\KdDebugWireFrame.cpp" />
     <ClCompile Include="Src\Framework\Utility\KdCSVData.cpp" />
     <ClCompile Include="Src\Framework\Utility\KdFPSController.cpp" />
+    <ClCompile Include="Src\Framework\Utility\MyFont\MyFont.cpp" />
     <ClCompile Include="src\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

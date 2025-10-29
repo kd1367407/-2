@@ -2,7 +2,7 @@
 #include"../../main.h"
 #include"../../UIHelpers/UIHelpers.h"
 
-Button::Button(const Math::Vector2& pos, std::shared_ptr<KdTexture> tex, std::shared_ptr<DirectX::SpriteFont> font, const std::string& label, std::function<void()> onClickAction):
+Button::Button(const Math::Vector2& pos, std::shared_ptr<KdTexture> tex, std::shared_ptr<MyFont> font, const std::string& label, std::function<void()> onClickAction):
 	m_pos(pos), m_tex(tex), m_spFont(font),m_label(label), m_onClick(onClickAction)
 {
 	if (m_tex)
@@ -68,6 +68,6 @@ void Button::Draw(float baseAlpha)
 		float textPosX = m_pos.x - (labelX / 2.0f);
 		float textPosY = m_pos.y - (labelY / 2.0f);
 
-		KdShaderManager::Instance().m_spriteShader.DrawString(m_spFont.get(), m_label.c_str(), textPosX, textPosY, &textColor);
+		KdShaderManager::Instance().m_spriteShader.DrawString(m_spFont->GetFont(), m_label.c_str(), textPosX, textPosY, &textColor);
 	}
 }
