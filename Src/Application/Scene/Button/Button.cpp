@@ -2,8 +2,8 @@
 #include"../../main.h"
 #include"../../UIHelpers/UIHelpers.h"
 
-Button::Button(const Math::Vector2& pos, std::shared_ptr<KdTexture> tex, std::function<void()> onClickAction):
-	m_pos(pos),m_tex(tex),m_onClick(onClickAction)
+Button::Button(const Math::Vector2& pos, std::shared_ptr<KdTexture> tex, std::shared_ptr<DirectX::SpriteFont> font, const std::string& label, std::function<void()> onClickAction):
+	m_pos(pos), m_tex(tex), m_spFont(font),m_label(label), m_onClick(onClickAction)
 {
 	if (m_tex)
 	{
@@ -51,5 +51,23 @@ void Button::Draw(float baseAlpha)
 	{
 		Math::Color color = { 1,1,1,m_alpha * baseAlpha };
 		KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex.get(), m_pos.x, m_pos.y, nullptr, &color);
+	}
+
+	//文字列
+	if (m_spFont && !m_label.empty())
+	{
+		Math::Color textColor = { 1, 1, 1, m_alpha * baseAlpha };
+
+		//文字列矩形計算
+		DirectX::XMVECTOR labelSizeVec = m_spFont->MeasureString(m_label.c_str());
+
+		float labelX = DirectX::XMVectorGetX(labelSizeVec);
+		float labelY = DirectX::XMVectorGetY(labelSizeVec);
+
+		//座標計算
+		float textPosX = m_pos.x - (labelX / 2.0f);
+		float textPosY = m_pos.y - (labelY / 2.0f);
+
+		
 	}
 }

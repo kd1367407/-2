@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include"../Inc/SpriteFont.h"
 
 class Button
 {
@@ -6,6 +7,8 @@ public:
 	Button(
 		const Math::Vector2& pos,
 		std::shared_ptr<KdTexture> tex,
+		std::shared_ptr<DirectX::SpriteFont> font,
+		const std::string& label,
 		std::function<void()> onClickAction
 	);
 
@@ -21,4 +24,6 @@ private:
 	std::function<void()> m_onClick;//クリック時に実行する関数
 	bool m_isOver;
 	float m_alpha;
+	std::shared_ptr<DirectX::SpriteFont> m_spFont;
+	std::string m_label;
 };
