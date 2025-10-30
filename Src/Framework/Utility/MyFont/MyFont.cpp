@@ -41,11 +41,10 @@ bool MyFont::Load(std::string_view fileName)
 
 	try
 	{
-		m_spFont = std::make_unique<DirectX::SpriteFont>(device, wFileName.c_str());
+		m_spFont = std::make_unique<DirectX::SpriteFont>(device, L"Asset/Font/NotoSansJPRegular.ttf");
 	}
 	catch (...)
 	{
-		//読み込み失敗
 		assert(0 && "SpriteFont の読み込みに失敗しました。ファイルパス、または .spritefont ファイルが正しいか確認してください。");
 		return false;
 	}
