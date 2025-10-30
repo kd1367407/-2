@@ -10,7 +10,7 @@ static std::wstring ConvertToWString(std::string_view str)//std::string (UTF-8) 
 		0,//フラグ
 		str.data(),//ソース文字列
 		(int)str.size(),//ソース文字列サイズ
-		NULL,//NULL
+		NULL,//変換しない
 		0//0 = サイズだけ計算
 	);
 
