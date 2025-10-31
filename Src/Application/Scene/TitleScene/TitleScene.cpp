@@ -27,122 +27,122 @@ void TitleScene::Init()
 	m_knobTex = KdAssets::Instance().m_textures.GetData("Asset/Textures/knobKari.png");
 
 	//フォントロード
-	auto spFont = KdAssets::Instance().m_fonts.GetData("Asset/Font/NotoSansJP-Regular.ttf");
+	//auto spFont = KdAssets::Instance().m_fonts.GetData("Asset/Font/NotoSansJP-Regular.ttf");
 
-	//背景
-	auto backgroundObj = std::make_shared<GameObject>();
-	backgroundObj->SetName("Background");
-	backgroundObj->AddComponent<BackgroundComponent>();
-	AddObject(backgroundObj);
-	backgroundObj->Init();
+	////背景
+	//auto backgroundObj = std::make_shared<GameObject>();
+	//backgroundObj->SetName("Background");
+	//backgroundObj->AddComponent<BackgroundComponent>();
+	//AddObject(backgroundObj);
+	//backgroundObj->Init();
 
-	m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
+	//m_spBGM = KdAudioManager::Instance().Play("Asset/Sound/TitleBGM.wav", true, 1.0f);
 
-	//--通常メニュー--
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, 0), m_playButtonTex, spFont, "",
-		[this]() {
-			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
-			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
-		}
-	);
+	////--通常メニュー--
+	//m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, 0), m_playButtonTex, spFont, "",
+	//	[this]() {
+	//		GameManager::Instance().SetLoadMode(GameManager::LoadMode::Play);
+	//		SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+	//	}
+	//);
 
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -100), m_createButtonTex, spFont, "",
-		[this]() {
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
-			m_currentState = MenuState::Create;
-		}
-	);
+	//m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -100), m_createButtonTex, spFont, "",
+	//	[this]() {
+	//		KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+	//		m_currentState = MenuState::Create;
+	//	}
+	//);
 
-	m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -200), m_volumeButtonTex, spFont, "",
-		[this]() {
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
-			m_currentState = MenuState::Volume;
-		}
-	);
+	//m_buttons[MenuState::Main].emplace_back(Math::Vector2(0, -200), m_volumeButtonTex, spFont, "",
+	//	[this]() {
+	//		KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+	//		m_currentState = MenuState::Volume;
+	//	}
+	//);
 
-	//--ステージ作成メニュー--
-	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, 0), m_editButtonTex, spFont, "",
-		[this]() {
-			GameManager::Instance().SetLoadMode(GameManager::LoadMode::Edit);
-			SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
-		}
-	);
+	////--ステージ作成メニュー--
+	//m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, 0), m_editButtonTex, spFont, "",
+	//	[this]() {
+	//		GameManager::Instance().SetLoadMode(GameManager::LoadMode::Edit);
+	//		SceneManager::Instance().ChangeScene(SceneManager::SceneType::StageSelect);
+	//	}
+	//);
 
-	m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, -100), m_newButtonTex, spFont, "",
-		[this]() {
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
-			m_currentState = MenuState::NewStage;
-		}
-	);
+	//m_buttons[MenuState::Create].emplace_back(Math::Vector2(0, -100), m_newButtonTex, spFont, "",
+	//	[this]() {
+	//		KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+	//		m_currentState = MenuState::NewStage;
+	//	}
+	//);
 
-	//--ステージ土台メニュー--
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, 0), m_foundation1ButtonTex, spFont, "",
-		[this]() {
-			auto& gm = GameManager::Instance();
-			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template01.json", "New Stage(Foundation 1)");
-			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
-			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
-		}
-	);
+	////--ステージ土台メニュー--
+	//m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, 0), m_foundation1ButtonTex, spFont, "",
+	//	[this]() {
+	//		auto& gm = GameManager::Instance();
+	//		gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+	//		gm.SetNextStage("Asset/Data/Stages/Template01.json", "New Stage(Foundation 1)");
+	//		SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+	//		SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+	//	}
+	//);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -100), m_foundation2ButtonTex, spFont, "",
-		[this]() {
-			auto& gm = GameManager::Instance();
-			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template02.json", "New Stage(Foundation 2)");
-			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
-			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
-		}
-	);
+	//m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -100), m_foundation2ButtonTex, spFont, "",
+	//	[this]() {
+	//		auto& gm = GameManager::Instance();
+	//		gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+	//		gm.SetNextStage("Asset/Data/Stages/Template02.json", "New Stage(Foundation 2)");
+	//		SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+	//		SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+	//	}
+	//);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -200), m_foundation3ButtonTex, spFont, "",
-		[this]() {
-			auto& gm = GameManager::Instance();
-			gm.SetLoadMode(GameManager::LoadMode::CreateNew);
-			gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Foundation 3)");
-			SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
-			SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
-		}
-	);
+	//m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -200), m_foundation3ButtonTex, spFont, "",
+	//	[this]() {
+	//		auto& gm = GameManager::Instance();
+	//		gm.SetLoadMode(GameManager::LoadMode::CreateNew);
+	//		gm.SetNextStage("Asset/Data/Stages/Template03.json", "New Stage(Foundation 3)");
+	//		SceneManager::Instance().SetMode(SceneManager::SceneMode::Create);
+	//		SceneManager::Instance().ChangeScene(SceneManager::SceneType::Game);
+	//	}
+	//);
 
-	m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
-		[this]() {
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
-			m_currentState = MenuState::Main;
-		}
-	);
+	//m_buttons[MenuState::NewStage].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
+	//	[this]() {
+	//		KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+	//		m_currentState = MenuState::Main;
+	//	}
+	//);
 
-	//--sound--
-	m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, 0), m_BGMSliderTex, m_knobTex,
-		[this](float newVolume) {
-			KdAudioManager::Instance().SetBGMVolume(newVolume);
-		}
-	);
+	////--sound--
+	//m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, 0), m_BGMSliderTex, m_knobTex,
+	//	[this](float newVolume) {
+	//		KdAudioManager::Instance().SetBGMVolume(newVolume);
+	//	}
+	//);
 
-	m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, -100), m_SESliderTex, m_knobTex,
-		[this](float newVolume) {
-			KdAudioManager::Instance().SetSEVolume(newVolume);
-		}
-	);
+	//m_sliders[MenuState::Volume].emplace_back(Math::Vector2(0, -100), m_SESliderTex, m_knobTex,
+	//	[this](float newVolume) {
+	//		KdAudioManager::Instance().SetSEVolume(newVolume);
+	//	}
+	//);
 
-	m_buttons[MenuState::Volume].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
-		[this]() {
-			KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
+	//m_buttons[MenuState::Volume].emplace_back(Math::Vector2(0, -300), m_backButtonTex, spFont, "",
+	//	[this]() {
+	//		KdAudioManager::Instance().Play("Asset/Sound/UIButton.wav", false, 1.0f);
 
-			//書き込み可能なjsonオブジェクトを取得
-			nlohmann::json& settings = SettingsManager::Instance().WorkGameSetting();
+	//		//書き込み可能なjsonオブジェクトを取得
+	//		nlohmann::json& settings = SettingsManager::Instance().WorkGameSetting();
 
-			//"volume_settings"の値を上書き
-			settings["volume_settings"]["SE"] = KdAudioManager::Instance().GetSEVolume();
-			settings["volume_settings"]["BGM"] = KdAudioManager::Instance().GetBGMVolume();
+	//		//"volume_settings"の値を上書き
+	//		settings["volume_settings"]["SE"] = KdAudioManager::Instance().GetSEVolume();
+	//		settings["volume_settings"]["BGM"] = KdAudioManager::Instance().GetBGMVolume();
 
-			//save指示(変更したjsonをファイルに書き出し)
-			SettingsManager::Instance().SaveGameSetting();
+	//		//save指示(変更したjsonをファイルに書き出し)
+	//		SettingsManager::Instance().SaveGameSetting();
 
-			m_currentState = MenuState::Main;
-		}
-	);
+	//		m_currentState = MenuState::Main;
+	//	}
+	//);
 
 	m_currentState = MenuState::Main;
 }
@@ -186,8 +186,8 @@ void TitleScene::SceneUpdate()
 void TitleScene::Draw()
 {
 	BaseScene::Draw();
-	/*DrawTitleWindow();
-	DrawButtonWindow();*/
+	DrawTitleWindow();
+	DrawButtonWindow();
 }
 
 void TitleScene::DrawSprite()

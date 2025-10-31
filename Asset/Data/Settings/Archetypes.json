@@ -78,7 +78,7 @@
 		"swappable": true,
 		"components": {
 			"TransformComponent": {},
-			"RenderComponent": { "model": "Asset/Models/Block/Movable/Movable_1.gltf" },
+			"RenderComponent": { "model": "Asset/Models/Block/Movable/MagicCircleTYPE01.gltf" },
 			"BlockDataComponent": {
 				"type": "Movable"
 			},
