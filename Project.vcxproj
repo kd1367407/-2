@@ -330,6 +330,7 @@
     <ClInclude Include="Src\Framework\Component\InputComponent\PlayerInputComponent.h" />
     <ClInclude Include="Src\Framework\Component\ITriggerReceiver.h" />
     <ClInclude Include="Src\Framework\Component\JumpBlockComponent\JumpBlockComponent.h" />
+    <ClInclude Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.h" />
     <ClInclude Include="Src\Framework\Component\MousePointerComponent\MousePointerComponent.h" />
     <ClInclude Include="Src\Framework\Component\MovingBlockComponent\MovingBlockComponent.h" />
     <ClInclude Include="Src\Framework\Component\PlayerStatsComponent\PlayerStatsComponent.h" />
@@ -453,6 +454,7 @@
     <ClCompile Include="Src\Framework\Component\ImGuiComponent\ImGuiComponent.cpp" />
     <ClCompile Include="Src\Framework\Component\InputComponent\PlayerInputComponent.cpp" />
     <ClCompile Include="Src\Framework\Component\JumpBlockComponent\JumpBlockComponent.cpp" />
+    <ClCompile Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.cpp" />
     <ClCompile Include="Src\Framework\Component\MousePointerComponent\MousePointerComponent.cpp" />
     <ClCompile Include="Src\Framework\Component\MovingBlockComponent\MovingBlockComponent.cpp" />
     <ClCompile Include="Src\Framework\Component\PlayerStatsComponent\PlayerStatsComponent.cpp" />

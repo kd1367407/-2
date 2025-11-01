@@ -298,6 +298,9 @@
     <Filter Include="Src\Framework\Utility\MyFont">
       <UniqueIdentifier>{e6bd23c1-3709-4202-a5e2-2d71ef09c390}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Framework\Component\MagicCircleComponent">
+      <UniqueIdentifier>{82ee6217-f7dc-43f4-a98d-c4ffd0e4243f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -711,6 +714,9 @@
     <ClInclude Include="Src\Framework\Utility\MyFont\MyFont.h">
       <Filter>Src\Framework\Utility\MyFont</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.h">
+      <Filter>Src\Framework\Component\MagicCircleComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -1045,6 +1051,9 @@
     </ClCompile>
     <ClCompile Include="Src\Framework\Utility\MyFont\MyFont.cpp">
       <Filter>Src\Framework\Utility\MyFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.cpp">
+      <Filter>Src\Framework\Component\MagicCircleComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

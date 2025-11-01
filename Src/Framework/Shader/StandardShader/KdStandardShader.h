@@ -108,6 +108,14 @@ public:
 		m_dirtyCBObj = true;
 	}
 
+	//エミッシブ有効/無効
+	void SetEmissieEnable(bool enable)
+	{
+		m_cb0_Obj.Work().OnlyEmissie = enable;
+
+		m_dirtyCBObj = true;
+	}
+
 	// ディゾルブ設定
 	void SetDissolve(float threshold, const float* range = nullptr, const Math::Vector3* edgeColor = nullptr)
 	{
