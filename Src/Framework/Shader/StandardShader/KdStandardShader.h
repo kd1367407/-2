@@ -111,7 +111,7 @@ public:
 	//エミッシブ有効/無効
 	void SetEmissieEnable(bool enable)
 	{
-		m_cb0_Obj.Work().OnlyEmissie = enable;
+		m_cb0_Obj.Work().OnlyEmissie = enable ? 1 : 0;
 
 		m_dirtyCBObj = true;
 	}

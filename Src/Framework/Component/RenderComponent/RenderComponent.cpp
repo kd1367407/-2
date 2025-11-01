@@ -1,6 +1,6 @@
 ﻿#include "RenderComponent.h"
 #include"../TransformComponent/TransformComponent.h"
-#include"../IdComponent/IdComponent.h"
+//#include"../IdComponent/IdComponent.h"
 #include"../GameObject.h"
 #include"../Src/Application/GameData/BlockState/BlockState.h"
 #include"../Src/Application/JsonHelper/JsonHelper.h"
