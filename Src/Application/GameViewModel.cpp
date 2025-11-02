@@ -33,6 +33,7 @@
 #include"../Src/Framework/Command/GroupSwapCommand/GroupSwapCommand.h"
 #include"SolutionRecorder/SolutionRecorder.h"
 #include"Scene/GameScene/GameManager/GameManager.h"
+#include"../Src/Framework/Component/MagicCircleComponent/MagicCircleComponent.h"
 
 unsigned int GameViewModel::s_nextEntityId = 1;
 using json = nlohmann::json;
@@ -286,6 +287,11 @@ void GameViewModel::PopulateSceneFromEntities(const nlohmann::json& entitiesArra
 			if (auto scalingBlock = newObject->GetComponent<ScalingBlockComponent>())
 			{
 				scalingBlock->SetViewModel(shared_from_this());
+			}
+
+			if (auto magicCircle = newObject->GetComponent<MagicCircleComponent>())
+			{
+				magicCircle->SetViewModel(shared_from_this());
 			}
 
 			if (auto playerInput = newObject->GetComponent<PlayerInputComponent>())

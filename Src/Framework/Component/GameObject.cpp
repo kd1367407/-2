@@ -14,6 +14,7 @@
 #include"SinkingBlockComponent/SinkingBlockComponent.h"
 #include"SlipperyComponent/SlipperyComponent.h"
 #include"ScalingBlockComponent/ScalingBlockComponent.h"
+#include"MagicCircleComponent/MagicCircleComponent.h"
 
 void GameObject::Init()
 {
@@ -296,6 +297,18 @@ BlockState GameObject::CreateState() const
 		outState.scaleSpeed = comp->GetscaleSpeed();
 	}
 
+	if (auto comp = GetComponent<MagicCircleComponent>())
+	{
+		outState.isMagicCircle = true;
+		outState.modelPath = comp->GetModelPath();
+		outState.localPos = comp->GetLocalPos();
+		outState.localRot = comp->GetLocalRot();
+		outState.localScale = comp->GetLocalScale();
+		outState.orbitRadius = comp->GetOrbitRadius();
+		outState.orbitSpeed = comp->GetOrbitSpeed();
+		outState.orbitAxisOffset = comp->GetOrbitAxisOffset();
+	}
+
 	return outState;
 }
 
@@ -434,6 +447,19 @@ void GameObject::ApplyState(const BlockState& state)
 			comp->SetScaleAxis(state.scaleAxis);
 			comp->SetScaleAmount(state.scaleAmount);
 			comp->SetScaleSpeed(state.scaleSpeed);
+		}
+	}
+
+	if (auto comp = GetComponent<MagicCircleComponent>())
+	{
+		if (state.isMagicCircle)
+		{
+			comp->SetLocalPos(state.localPos);
+			comp->SetLocalRot(state.localRot);
+			comp->SetLocalScale(state.localScale);
+			comp->SetOrbitRadius(state.orbitRadius);
+			comp->SetOrbitSpeed(state.orbitSpeed);
+			comp->SetOrbitAxisOffset(state.orbitAxisOffset);
 		}
 	}
 }

@@ -17,8 +17,6 @@ void MagicCircleComponent::Start()
 void MagicCircleComponent::Update()
 {
 	float deltatime = Application::Instance().GetDeltaTime();
-	/*m_localRot.y += m_rotationSpeedY * deltatime;
-	m_localRot.y = fmod(m_localRot.y, 360.0f);*/
 
 	//公転
 	m_orbitAngle += m_orbitSpeed * deltatime;
@@ -29,6 +27,8 @@ void MagicCircleComponent::Update()
 	m_localPos.x = m_orbitRadius * cos(orbitRadians) + m_orbitAxisOffset.x;
 	m_localPos.z = m_orbitRadius * sin(orbitRadians) + m_orbitAxisOffset.z;
 	m_localPos.y = m_orbitAxisOffset.y;
+
+	m_localRot.z = m_orbitAngle - 260.0f;
 }
 
 void MagicCircleComponent::DrawLit()
@@ -148,7 +148,10 @@ void MagicCircleComponent::Configure(const nlohmann::json& data)
 	JsonHelper::GetVector3(magicCircleData, "localPos", m_localPos, m_localPos);
 	JsonHelper::GetVector3(magicCircleData, "localRot", m_localRot, m_localRot);
 	JsonHelper::GetVector3(magicCircleData, "localScale", m_localScale, m_localScale);
-	JsonHelper::GetFloat(magicCircleData, "rotationSpeedY", m_rotationSpeedY);
+	
+	m_orbitRadius = JsonHelper::GetFloat(magicCircleData, "orbitRadius", m_orbitRadius);
+	m_orbitSpeed = JsonHelper::GetFloat(magicCircleData, "orbitSpeed", m_orbitSpeed);
+	JsonHelper::GetVector3(magicCircleData, "orbitAxisOffset", m_orbitAxisOffset, m_orbitAxisOffset);
 }
 
 nlohmann::json MagicCircleComponent::ToJson() const
@@ -156,10 +159,13 @@ nlohmann::json MagicCircleComponent::ToJson() const
 	nlohmann::json j;
 	j["model"] = m_modelPath;
 
-	j["localPosition"] = { m_localPos.x, m_localPos.y, m_localPos.z };
-	j["localRotation"] = { m_localRot.x, m_localRot.y, m_localRot.z };
+	j["localPos"] = { m_localPos.x, m_localPos.y, m_localPos.z };
+	j["localRot"] = { m_localRot.x, m_localRot.y, m_localRot.z };
 	j["localScale"] = { m_localScale.x, m_localScale.y, m_localScale.z };
-	j["rotationSpeedY"] = m_rotationSpeedY;
+
+	j["orbitRadius"] = m_orbitRadius;
+	j["orbitSpeed"] = m_orbitSpeed;
+	j["orbitAxisOffset"] = { m_orbitAxisOffset.x, m_orbitAxisOffset.y, m_orbitAxisOffset.z };
 
 	return j;
 }
@@ -181,6 +187,7 @@ void MagicCircleComponent::OnInspect()
 		bool valueChanged = false;
 		bool itemDeactivated = false;
 
+		//--相対Transform--
 		//--Pos--
 		valueChanged |= ImGui::DragFloat3("localPos", &m_localPos.x, 0.1f);
 		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
@@ -193,8 +200,18 @@ void MagicCircleComponent::OnInspect()
 		valueChanged |= ImGui::DragFloat3("localScale", &m_localScale.x, 0.1f);
 		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
 
-		//いずれかのウィジェットで値が変更されたとき
-		if (valueChanged) { m_isDirty = true; }
+		ImGui::Separator();
+
+		//--公転パラメータ--
+		ImGui::Text("Orbit Parameters");
+		valueChanged |= ImGui::DragFloat("orbitRadius", &m_orbitRadius, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		valueChanged |= ImGui::DragFloat("orbitSpeed", &m_orbitSpeed, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		valueChanged |= ImGui::DragFloat3("orbitAxisOffset", &m_orbitAxisOffset.x, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
 
 		//いずれかのウィジェットウィジェットのドラッグが終了した瞬間
 		if (itemDeactivated)

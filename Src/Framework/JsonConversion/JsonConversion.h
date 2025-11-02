@@ -162,7 +162,10 @@ inline void to_json(nlohmann::json& j, const BlockState& p)
 			{"model", p.modelPath},
 			{"localPos", p.localPos},
 			{"localRot", p.localRot},
-			{"localScale",    p.localScale}
+			{"localScale",p.localScale},
+			{"orbitRadius",p.orbitRadius},
+			{"orbitSpeed",p.orbitSpeed},
+			{"orbitAxisOffset",p.orbitAxisOffset}
 		};
 	}
 }
@@ -289,6 +292,9 @@ inline void from_json(const nlohmann::json& j, BlockState& p)
 			p.localPos = data.value("localPos", Math::Vector3::Zero);
 			p.localRot = data.value("localRot", Math::Vector3::Zero);
 			p.localScale = data.value("localScale", Math::Vector3::One);
+			p.orbitRadius = data.value("orbitRadius", 1.5f);
+			p.orbitSpeed = data.value("orbitSpeed", 1.0f);
+			p.orbitAxisOffset = data.value("orbitAxisOffset", Math::Vector3::Zero);
 		}
 	}
 }

@@ -77,4 +77,7 @@ struct BlockState
 	Math::Vector3 localPos;
 	Math::Vector3 localRot;
 	Math::Vector3 localScale;
+	float orbitRadius;
+	float orbitSpeed;
+	Math::Vector3 orbitAxisOffset;
 };

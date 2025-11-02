@@ -31,9 +31,9 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        4.8877973556518555,
+                        0.2944454550743103,
                         -1.0,
-                        2.246159791946411
+                        5.728817462921143
                     ],
                     "rotation": [
                         -0.0,
@@ -4715,7 +4715,7 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        6.186117172241211,
+                        1.7989298105239868,
                         2.0,
                         0.0
                     ],
@@ -4786,23 +4786,29 @@
                     "layer": "LayerBlock"
                 },
                 "MagicCircleComponent": {
-                    "localPosition": [
-                        5.0,
-                        0.0,
-                        0.0
+                    "localPos": [
+                        1.1243520975112915,
+                        1.0,
+                        0.9928909540176392
                     ],
-                    "localRotation": [
+                    "localRot": [
+                        90.0,
                         0.0,
-                        226.88926696777344,
-                        0.0
+                        -218.552978515625
                     ],
                     "localScale": [
                         1.0,
                         1.0,
                         1.0
                     ],
-                    "model": "Asset/Models/MagicCircle/MagicCircle01.gltf",
-                    "rotationSpeedY": 90.0
+                    "model": "Asset/Models/MagicCircle/MagicCircle02.gltf",
+                    "orbitAxisOffset": [
+                        0.0,
+                        1.0,
+                        0.0
+                    ],
+                    "orbitRadius": 1.5,
+                    "orbitSpeed": 45.0
                 },
                 "RenderComponent": {
                     "model": "Asset/Models/Block/Movable/Movable_1.gltf"

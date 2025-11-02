@@ -14,7 +14,22 @@ public:
 	void DrawBright()override;
 
 	void SetModel(const std::string& path);
+	std::string GetModelPath() const { return m_modelPath; }
 	void RequestTransformChangeCommand();
+	void SetViewModel(const std::shared_ptr<GameViewModel>& viewModel) { m_wpViewModel = viewModel; }
+
+	const Math::Vector3& GetLocalPos()const { return m_localPos; }
+	void SetLocalPos(const Math::Vector3& pos) { m_localPos = pos; }
+	const Math::Vector3& GetLocalRot()const { return m_localRot; }
+	void SetLocalRot(const Math::Vector3& rot) { m_localRot = rot; }
+	const Math::Vector3& GetLocalScale()const { return m_localScale; }
+	void SetLocalScale(const Math::Vector3& scale) { m_localScale = scale; }
+	const float& GetOrbitRadius()const { return m_orbitRadius; }
+	void SetOrbitRadius(const float& radius) { m_orbitRadius = radius; }
+	const float& GetOrbitSpeed()const { return m_orbitSpeed; }
+	void SetOrbitSpeed(const float& speed) { m_orbitSpeed = speed; }
+	const Math::Vector3& GetOrbitAxisOffset()const { return m_orbitAxisOffset; }
+	void SetOrbitAxisOffset(const Math::Vector3& offset) { m_orbitAxisOffset = offset; }
 
 	void Configure(const nlohmann::json& data) override;
 	nlohmann::json ToJson() const override;
