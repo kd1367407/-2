@@ -19,6 +19,16 @@ void MagicCircleComponent::Update()
 	float deltatime = Application::Instance().GetDeltaTime();
 	m_localRot.y += m_rotationSpeedY * deltatime;
 	m_localRot.y = fmod(m_localRot.y, 360.0f);
+
+	//公転
+	m_orbitAngle += m_orbitSpeed * deltatime;
+	m_orbitAngle = fmod(m_orbitAngle, 360.0f);
+
+	float orbitRadians = DirectX::XMConvertToRadians(m_orbitAngle);
+
+	m_localPos.x = m_orbitRadius * cos(orbitRadians) + m_orbitAxisOffset.x;
+	m_localPos.z = m_orbitRadius * sin(orbitRadians) + m_orbitAxisOffset.z;
+	m_localPos.y = m_orbitAxisOffset.y;
 }
 
 void MagicCircleComponent::DrawBright()
@@ -40,11 +50,14 @@ void MagicCircleComponent::DrawBright()
 	//最終的な行列
 	Math::Matrix finalMat = localMat * ownerWorldMat;
 
+	KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
+
 	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
 
 	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
 
 	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
+	KdShaderManager::Instance().UndoRasterizerState();
 }
 
 void MagicCircleComponent::SetModel(const std::string& path)

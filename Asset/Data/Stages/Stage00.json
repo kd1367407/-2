@@ -31,9 +31,9 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        1.4999810457229614,
+                        4.8877973556518555,
                         -1.0,
-                        0.041973263025283813
+                        2.246159791946411
                     ],
                     "rotation": [
                         -0.0,
@@ -4715,7 +4715,7 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        3.0296311378479004,
+                        6.186117172241211,
                         2.0,
                         0.0
                     ],
@@ -4731,7 +4731,7 @@
                     ]
                 }
             },
-            "name": "MovingBlock_1"
+            "name": "MovingBlock_0"
         },
         {
             "archetype": "JumpBlock",
@@ -4775,7 +4775,61 @@
                 }
             },
             "name": "JumpBlock_0"
+        },
+        {
+            "archetype": "MovableBlock",
+            "components": {
+                "BlockDataComponent": {
+                    "type": "Movable"
+                },
+                "ColliderComponent": {
+                    "layer": "LayerBlock"
+                },
+                "MagicCircleComponent": {
+                    "localPosition": [
+                        5.0,
+                        0.0,
+                        0.0
+                    ],
+                    "localRotation": [
+                        0.0,
+                        226.88926696777344,
+                        0.0
+                    ],
+                    "localScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "model": "Asset/Models/MagicCircle/MagicCircle01.gltf",
+                    "rotationSpeedY": 90.0
+                },
+                "RenderComponent": {
+                    "model": "Asset/Models/Block/Movable/Movable_1.gltf"
+                },
+                "RigidbodyComponent": {
+                    "type": "kinematic"
+                },
+                "TransformComponent": {
+                    "position": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "rotation": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "name": "MovableBlock_0"
         }
     ],
-    "parMoves": 1
+    "parMoves": 0
 }

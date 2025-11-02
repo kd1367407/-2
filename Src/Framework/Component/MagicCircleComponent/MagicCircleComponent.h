@@ -30,4 +30,8 @@ private:
 	Math::Vector3 m_localScale = Math::Vector3::One;
 	float m_rotationSpeedY = 90.0f;//90度/s
 	bool m_isDirty = false;	
+	float m_orbitAngle = 0.0f;
+	float m_orbitSpeed = 45.0f;
+	float m_orbitRadius = 1.5f;
+	Math::Vector3 m_orbitAxisOffset = Math::Vector3::Zero;
 };
