@@ -3,6 +3,7 @@
 #include"../GameObject.h"
 #include"../Src/Application/main.h"
 #include"../Src/Application/JsonHelper/JsonHelper.h"
+#include"../IdComponent/IdComponent.h"
 
 void MagicCircleComponent::Awake()
 {
@@ -39,11 +40,11 @@ void MagicCircleComponent::DrawBright()
 	//最終的な行列
 	Math::Matrix finalMat = localMat * ownerWorldMat;
 
-	KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
+	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
 
 	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
 
-	KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
+	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
 }
 
 void MagicCircleComponent::SetModel(const std::string& path)
@@ -57,6 +58,18 @@ void MagicCircleComponent::SetModel(const std::string& path)
 	{
 		m_spModel.reset();
 		m_modelPath.clear();
+	}
+}
+
+void MagicCircleComponent::RequestTransformChangeCommand()
+{
+
+	if (auto viewModel = m_wpViewModel.lock())
+	{
+		if (auto idComp = m_owner->GetComponent<IdComponent>())
+		{
+			viewModel->UpdateStateFromGameObject(m_owner->shared_from_this());
+		}
 	}
 }
 
@@ -92,4 +105,44 @@ nlohmann::json MagicCircleComponent::ToJson() const
 	j["rotationSpeedY"] = m_rotationSpeedY;
 
 	return j;
+}
+
+void MagicCircleComponent::OnInspect()
+{
+	if (ImGui::CollapsingHeader("MagicCircle Component", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		if (m_modelPath.empty())
+		{
+			ImGui::Text("Model Path: N/A");
+		}
+		else
+		{
+			std::string_view path_view = m_modelPath;
+			ImGui::InputText("Model Path", (char*)path_view.data(), path_view.size(), ImGuiInputTextFlags_ReadOnly);
+		}
+
+		bool valueChanged = false;
+		bool itemDeactivated = false;
+
+		//--Pos--
+		valueChanged |= ImGui::DragFloat3("localPos", &m_localPos.x, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		//--Rot--
+		valueChanged |= ImGui::DragFloat3("localRot", &m_localRot.x, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		//--Scale--
+		valueChanged |= ImGui::DragFloat3("localScale", &m_localScale.x, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		//いずれかのウィジェットで値が変更されたとき
+		if (valueChanged) { m_isDirty = true; }
+
+		//いずれかのウィジェットウィジェットのドラッグが終了した瞬間
+		if (itemDeactivated)
+		{
+			RequestTransformChangeCommand();
+		}
+	}
 }

@@ -156,6 +156,15 @@ inline void to_json(nlohmann::json& j, const BlockState& p)
 			{"ImagePath", p.tutorialImagePath}
 		};
 	}
+
+	if (p.isMagicCircle) {
+		components["MagicCircleComponent"] = {
+			{"model", p.modelPath},
+			{"localPos", p.localPos},
+			{"localRot", p.localRot},
+			{"localScale",    p.localScale}
+		};
+	}
 }
 
 inline void from_json(const nlohmann::json& j, BlockState& p)
@@ -271,6 +280,15 @@ inline void from_json(const nlohmann::json& j, BlockState& p)
 			p.tutorialBlockName = data.value("BlockName", "");
 			p.tutorialText = data.value("Text", "");
 			p.tutorialImagePath = data.value("ImagePath", "");
+		}
+
+		if (components.contains("MagicCircleComponent"))
+		{
+			p.isMagicCircle = true;
+			const auto& data = components.at("MagicCircleComponent");
+			p.localPos = data.value("localPos", Math::Vector3::Zero);
+			p.localRot = data.value("localRot", Math::Vector3::Zero);
+			p.localScale = data.value("localScale", Math::Vector3::One);
 		}
 	}
 }

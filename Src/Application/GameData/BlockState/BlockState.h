@@ -71,4 +71,10 @@ struct BlockState
 	std::string tutorialText;
 	std::string tutorialImagePath;
 
+	//魔法陣
+	bool isMagicCircle = false;
+	std::string modelPath;
+	Math::Vector3 localPos;
+	Math::Vector3 localRot;
+	Math::Vector3 localScale;
 };

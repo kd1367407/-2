@@ -78,7 +78,7 @@
 		"swappable": true,
 		"components": {
 			"TransformComponent": {},
-			"RenderComponent": { "model": "Asset/Models/Block/Movable/MagicCircleTYPE01.gltf" },
+			"RenderComponent": { "model": "Asset/Models/Block/Movable/Movable_1.gltf" },
 			"BlockDataComponent": {
 				"type": "Movable"
 			},
@@ -90,6 +90,9 @@
 				"shape": "polygon",
 				"model": "Asset/Models/Block/Movable/COLMovable_proto.gltf",
 				"layer": "LayerBlock"
+			},
+			"MagicCircleComponent": {
+				"model": "Asset/Models/MagicCircle/MagicCircle01.gltf"
 			}
 		}
 	},

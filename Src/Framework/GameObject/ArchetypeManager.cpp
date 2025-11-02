@@ -18,6 +18,7 @@
 #include"../Src/Framework/Component/TutorialTriggerComponent/TutorialTriggerComponent.h"
 #include"../Src/Framework/Component/CameraComponent/TPSCameraComponent/TPSCameraComponent.h"
 #include"../Src/Framework/Component/TagComponent/TagComponent.h"
+#include"../Src/Framework/Component/MagicCircleComponent/MagicCircleComponent.h"
 #include"../Src/Application/JsonHelper/JsonHelper.h"
 #include "../../Application/main.h"
 
@@ -164,6 +165,7 @@ void ArchetypeManager::RegisterComponentTypes()
 	m_componentFactory["TutorialTriggerComponent"] = []() { return std::make_shared<TutorialTriggerComponent>(); };
 	m_componentFactory["TPSCameraComponent"] = []() { return std::make_shared<TPSCameraComponent>(); };
 	m_componentFactory["TagComponent"] = []() { return std::make_shared<TagComponent>(); };
+	m_componentFactory["MagicCircleComponent"] = []() { return std::make_shared<MagicCircleComponent>(); };
 }
 
 void ArchetypeManager::ApplyComponentSettings(GameObject& obj, const nlohmann::json& componentData)
