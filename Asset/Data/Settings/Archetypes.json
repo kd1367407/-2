@@ -92,7 +92,7 @@
 				"layer": "LayerBlock"
 			},
 			"MagicCircleComponent": {
-				"model": "Asset/Models/MagicCircle/MagicCircle01.gltf"
+				"model": "Asset/Models/MagicCircle/MagicCircle02.gltf"
 			}
 		}
 	},

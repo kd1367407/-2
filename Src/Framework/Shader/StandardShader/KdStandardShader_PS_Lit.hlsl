@@ -66,6 +66,8 @@ float4 main(VSOutput In) : SV_Target0
 	//------------------------------------------
 	float4 baseColor = g_baseTex.Sample(g_ss, In.UV) * g_BaseColor * In.Color;
 
+	float3 emissibleColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
+
 	float alpha = baseColor.a;
 	
 	// Alphaテスト
@@ -242,8 +244,6 @@ float4 main(VSOutput In) : SV_Target0
 	}
 
 	outColor += g_AmbientLight.rgb * baseColor.rgb * baseColor.a;
-
-	float3 emissibleColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
 	
 	
 	// 自己発光色の適応
