@@ -10,6 +10,7 @@ public:
 	void Awake()override;
 	void Start()override;
 	void Update()override;
+	void DrawLit()override;
 	void DrawBright()override;
 
 	void SetModel(const std::string& path);

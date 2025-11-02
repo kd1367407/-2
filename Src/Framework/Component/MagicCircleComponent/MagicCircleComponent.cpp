@@ -31,6 +31,35 @@ void MagicCircleComponent::Update()
 	m_localPos.y = m_orbitAxisOffset.y;
 }
 
+void MagicCircleComponent::DrawLit()
+{
+	//if (!m_ownerTransform || !m_spModel)return;
+
+	////行列計算
+	//Math::Matrix scaleMat = Math::Matrix::CreateScale(m_localScale);
+	//Math::Matrix rotMat = Math::Matrix::CreateFromYawPitchRoll(
+	//	DirectX::XMConvertToRadians(m_localRot.y),
+	//	DirectX::XMConvertToRadians(m_localRot.x),
+	//	DirectX::XMConvertToRadians(m_localRot.z)
+	//);
+	//Math::Matrix transMat = Math::Matrix::CreateTranslation(m_localPos);
+
+	//Math::Matrix localMat = scaleMat * rotMat * transMat;
+	//const Math::Matrix& ownerWorldMat = m_ownerTransform->GetMatrix();
+
+	////最終的な行列
+	//Math::Matrix finalMat = localMat * ownerWorldMat;
+
+	//KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
+
+	////KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
+
+	//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
+
+	////KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
+	//KdShaderManager::Instance().UndoRasterizerState();
+}
+
 void MagicCircleComponent::DrawBright()
 {
 	if (!m_ownerTransform || !m_spModel)return;

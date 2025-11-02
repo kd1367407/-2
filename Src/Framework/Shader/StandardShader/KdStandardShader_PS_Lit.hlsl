@@ -65,6 +65,8 @@ float4 main(VSOutput In) : SV_Target0
 	// 材質色
 	//------------------------------------------
 	float4 baseColor = g_baseTex.Sample(g_ss, In.UV) * g_BaseColor * In.Color;
+
+	float alpha = baseColor.a;
 	
 	// Alphaテスト
 	if( baseColor.a < 0.05f )
@@ -245,6 +247,8 @@ float4 main(VSOutput In) : SV_Target0
 	if (g_OnlyEmissie)
 	{
 		outColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
+
+		alpha = 1.0f;
 	}
 	else
 	{
@@ -299,5 +303,12 @@ float4 main(VSOutput In) : SV_Target0
 	//------------------------------------------
 	// 出力
 	//------------------------------------------
-	return float4(outColor, baseColor.a);
+	if(g_OnlyEmissie)
+	{
+		return float4(outColor, alpha);
+	}
+	else
+	{
+		return float4(outColor, baseColor.a);
+	}
 }

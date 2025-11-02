@@ -34,7 +34,7 @@ public:
 private:
 	FadeState m_state = FadeState::Idle;
 	float m_currentAlpha = 0.0f;
-	float m_fadeSpeed = 0.5f;
+	float m_fadeSpeed = 1.0f;
 
 	//std::shared_ptr<KdTexture> m_blackTex;
 };
