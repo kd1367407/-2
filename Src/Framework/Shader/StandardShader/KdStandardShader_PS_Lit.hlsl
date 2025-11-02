@@ -242,17 +242,21 @@ float4 main(VSOutput In) : SV_Target0
 	}
 
 	outColor += g_AmbientLight.rgb * baseColor.rgb * baseColor.a;
+
+	float3 emissibleColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
+	
 	
 	// 自己発光色の適応
 	if (g_OnlyEmissie)
 	{
-		outColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
-
+		outColor = emissibleColor;
 		alpha = 1.0f;
+
+		totalBrightness = 1.0f;//影や減衰を無視
 	}
 	else
 	{
-		outColor += g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
+		//outColor += g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
 	}
 	
 	//------------------------------------------
@@ -298,17 +302,15 @@ float4 main(VSOutput In) : SV_Target0
 	}
 	
 	totalBrightness = saturate( totalBrightness );
-	outColor *= totalBrightness;
+	outColor *= totalBrightness;//ライティングとフォグ適用
+
+	if(!g_OnlyEmissie)
+	{
+		outColor += emissibleColor;
+	}
 	
 	//------------------------------------------
 	// 出力
 	//------------------------------------------
-	if(g_OnlyEmissie)
-	{
-		return float4(outColor, alpha);
-	}
-	else
-	{
-		return float4(outColor, baseColor.a);
-	}
+	return float4(outColor, alpha);
 }
