@@ -68,10 +68,10 @@ float4 main(VSOutput In) : SV_Target0
 
 	float3 emissibleColor = g_emissiveTex.Sample(g_ss, In.UV).rgb * g_Emissive * In.Color.rgb;
 
-	float alpha = baseColor.a;
+	float alpha = max(baseColor.a, emissibleColor.r);
 	
 	// Alphaテスト
-	if( baseColor.a < 0.05f )
+	if (alpha < 0.05f)
 	{
 		discard;
 	}

@@ -17,8 +17,8 @@ void MagicCircleComponent::Start()
 void MagicCircleComponent::Update()
 {
 	float deltatime = Application::Instance().GetDeltaTime();
-	m_localRot.y += m_rotationSpeedY * deltatime;
-	m_localRot.y = fmod(m_localRot.y, 360.0f);
+	/*m_localRot.y += m_rotationSpeedY * deltatime;
+	m_localRot.y = fmod(m_localRot.y, 360.0f);*/
 
 	//公転
 	m_orbitAngle += m_orbitSpeed * deltatime;
@@ -55,61 +55,53 @@ void MagicCircleComponent::DrawLit()
 
 	//発光を強くする
 	KdStandardShader::cbMaterial customMaterial = originalMaterial;
-	customMaterial.Emissive = { 5.0f,5.0f,5.0f };
+	customMaterial.Emissive = { 100.0f,100.0f,100.0f };
 
 	//カスタムマテリアルをセット
 	KdShaderManager::Instance().m_StandardShader.SetMaterialCB(customMaterial);
-
-	//KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
-
-	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
+	KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
 
 	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
 
-	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
 	KdShaderManager::Instance().m_StandardShader.SetMaterialCB(originalMaterial);
-	//KdShaderManager::Instance().UndoRasterizerState();
+	KdShaderManager::Instance().UndoRasterizerState();
 }
 
 void MagicCircleComponent::DrawBright()
 {
-	//if (!m_ownerTransform || !m_spModel)return;
+	if (!m_ownerTransform || !m_spModel)return;
 
-	////行列計算
-	//Math::Matrix scaleMat = Math::Matrix::CreateScale(m_localScale);
-	//Math::Matrix rotMat = Math::Matrix::CreateFromYawPitchRoll(
-	//	DirectX::XMConvertToRadians(m_localRot.y),
-	//	DirectX::XMConvertToRadians(m_localRot.x),
-	//	DirectX::XMConvertToRadians(m_localRot.z)
-	//);
-	//Math::Matrix transMat = Math::Matrix::CreateTranslation(m_localPos);
+	//行列計算
+	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_localScale);
+	Math::Matrix rotMat = Math::Matrix::CreateFromYawPitchRoll(
+		DirectX::XMConvertToRadians(m_localRot.y),
+		DirectX::XMConvertToRadians(m_localRot.x),
+		DirectX::XMConvertToRadians(m_localRot.z)
+	);
+	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_localPos);
 
-	//Math::Matrix localMat = scaleMat * rotMat * transMat;
-	//const Math::Matrix& ownerWorldMat = m_ownerTransform->GetMatrix();
+	Math::Matrix localMat = scaleMat * rotMat * transMat;
+	const Math::Matrix& ownerWorldMat = m_ownerTransform->GetMatrix();
 
-	////最終的な行列
-	//Math::Matrix finalMat = localMat * ownerWorldMat;
+	//最終的な行列
+	Math::Matrix finalMat = localMat * ownerWorldMat;
 
-	////元のマテリアルをバックアップ
-	//KdStandardShader::cbMaterial originalMaterial = KdShaderManager::Instance().m_StandardShader.GetMaterialCB();
+	//元のマテリアルをバックアップ
+	KdStandardShader::cbMaterial originalMaterial = KdShaderManager::Instance().m_StandardShader.GetMaterialCB();
 
-	////発光を強くする
-	//KdStandardShader::cbMaterial customMaterial = originalMaterial;
-	////customMaterial.Emissive = { 5.0f,5.0f,5.0f };
-	//customMaterial.Emissive = { 100.0f,100.0f,100.0f };
+	//発光を強くする
+	KdStandardShader::cbMaterial customMaterial = originalMaterial;
+	//customMaterial.Emissive = { 5.0f,5.0f,5.0f };
+	customMaterial.Emissive = { 100.0f,100.0f,100.0f };
 
-	////カスタムマテリアルをセット
-	//KdShaderManager::Instance().m_StandardShader.SetMaterialCB(customMaterial);
+	//カスタムマテリアルをセット
+	KdShaderManager::Instance().m_StandardShader.SetMaterialCB(customMaterial);
+	KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
 
-	////KdShaderManager::Instance().ChangeRasterizerState(KdRasterizerState::CullNone);
+	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
 
-	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(true);
-
-	//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel, finalMat);
-
-	//KdShaderManager::Instance().m_StandardShader.SetEmissieEnable(false);
-	//KdShaderManager::Instance().m_StandardShader.SetMaterialCB(originalMaterial);
-	////KdShaderManager::Instance().UndoRasterizerState();
+	KdShaderManager::Instance().m_StandardShader.SetMaterialCB(originalMaterial);
+	KdShaderManager::Instance().UndoRasterizerState();
 }
 
 void MagicCircleComponent::SetModel(const std::string& path)
