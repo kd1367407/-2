@@ -166,7 +166,6 @@ inline void to_json(nlohmann::json& j, const BlockState& p)
 			{"orbitRadius",p.orbitRadius},
 			{"orbitSpeed",p.orbitSpeed},
 			{"orbitAxisOffset",p.orbitAxisOffset},
-			{ "orbitAxisOffset",p.orbitAxisOffset },
 			{"normalSpeed",p.normalSpeed},
 			{"selectedSpeed",p.selectedSpeed},
 			{"selectedScaleMultiplier",p.selectedScaleMultiplier},

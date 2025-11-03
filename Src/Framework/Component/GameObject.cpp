@@ -467,7 +467,7 @@ void GameObject::ApplyState(const BlockState& state)
 			comp->SetNormalSpeed(state.normalSpeed);
 			comp->SetSelectedSpeed(state.selectedSpeed);
 			comp->SetScaleMultiplier(state.selectedScaleMultiplier);
-			comp->SetScaleLerpSpeed(state.selectedSpeed);
+			comp->SetScaleLerpSpeed(state.scaleLerpSpeed);
 		}
 	}
 }
