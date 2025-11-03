@@ -31,9 +31,9 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        0.2312631607055664,
+                        0.7083252668380737,
                         -1.0,
-                        4.247077465057373
+                        4.7875261306762695
                     ],
                     "rotation": [
                         -0.0,
@@ -4715,7 +4715,7 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        2.9264442920684814,
+                        2.112788677215576,
                         2.0,
                         0.0
                     ],
@@ -4793,7 +4793,7 @@
                     ],
                     "localRot": [
                         0.0,
-                        30.838165283203125,
+                        273.2964782714844,
                         0.0
                     ],
                     "localScale": [
@@ -4802,13 +4802,17 @@
                         2.0
                     ],
                     "model": "Asset/Models/MagicCircle/MagicCircle02.gltf",
+                    "normalSpeed": 90.0,
                     "orbitAxisOffset": [
                         0.0,
                         0.0,
                         0.0
                     ],
                     "orbitRadius": 0.0,
-                    "orbitSpeed": 45.0
+                    "orbitSpeed": 45.0,
+                    "scaleLerpSpeed": 10.0,
+                    "selectedScaleMultiplier": 1.5,
+                    "selectedSpeed": 360.0
                 },
                 "RenderComponent": {
                     "model": "Asset/Models/Block/Movable/Movable_1.gltf"

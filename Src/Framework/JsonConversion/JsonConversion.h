@@ -165,7 +165,12 @@ inline void to_json(nlohmann::json& j, const BlockState& p)
 			{"localScale",p.localScale},
 			{"orbitRadius",p.orbitRadius},
 			{"orbitSpeed",p.orbitSpeed},
-			{"orbitAxisOffset",p.orbitAxisOffset}
+			{"orbitAxisOffset",p.orbitAxisOffset},
+			{ "orbitAxisOffset",p.orbitAxisOffset },
+			{"normalSpeed",p.normalSpeed},
+			{"selectedSpeed",p.selectedSpeed},
+			{"selectedScaleMultiplier",p.selectedScaleMultiplier},
+			{"scaleLerpSpeed",p.scaleLerpSpeed}
 		};
 	}
 }
@@ -295,6 +300,10 @@ inline void from_json(const nlohmann::json& j, BlockState& p)
 			p.orbitRadius = data.value("orbitRadius", 1.5f);
 			p.orbitSpeed = data.value("orbitSpeed", 1.0f);
 			p.orbitAxisOffset = data.value("orbitAxisOffset", Math::Vector3::Zero);
+			p.normalSpeed = data.value("normalSpeed", 90.0f);
+			p.selectedSpeed = data.value("selectedSpeed", 360.0f);
+			p.selectedScaleMultiplier = data.value("selectedScaleMultiplier", 1.5f);
+			p.scaleLerpSpeed = data.value("scaleLerpSpeed", 10.0f);
 		}
 	}
 }
