@@ -31,9 +31,9 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        0.2944454550743103,
+                        0.2312631607055664,
                         -1.0,
-                        5.728817462921143
+                        4.247077465057373
                     ],
                     "rotation": [
                         -0.0,
@@ -4715,7 +4715,7 @@
                 },
                 "TransformComponent": {
                     "position": [
-                        1.7989298105239868,
+                        2.9264442920684814,
                         2.0,
                         0.0
                     ],
@@ -4787,27 +4787,27 @@
                 },
                 "MagicCircleComponent": {
                     "localPos": [
-                        1.1243520975112915,
-                        1.0,
-                        0.9928909540176392
+                        0.0,
+                        0.0,
+                        0.0
                     ],
                     "localRot": [
-                        90.0,
                         0.0,
-                        -218.552978515625
+                        30.838165283203125,
+                        0.0
                     ],
                     "localScale": [
+                        2.0,
                         1.0,
-                        1.0,
-                        1.0
+                        2.0
                     ],
                     "model": "Asset/Models/MagicCircle/MagicCircle02.gltf",
                     "orbitAxisOffset": [
                         0.0,
-                        1.0,
+                        0.0,
                         0.0
                     ],
-                    "orbitRadius": 1.5,
+                    "orbitRadius": 0.0,
                     "orbitSpeed": 45.0
                 },
                 "RenderComponent": {

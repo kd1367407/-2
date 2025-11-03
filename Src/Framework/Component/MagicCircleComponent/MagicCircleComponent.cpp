@@ -28,7 +28,21 @@ void MagicCircleComponent::Update()
 	m_localPos.z = m_orbitRadius * sin(orbitRadians) + m_orbitAxisOffset.z;
 	m_localPos.y = m_orbitAxisOffset.y;
 
-	m_localRot.z = m_orbitAngle - 260.0f;
+	//m_localRot.y = m_orbitAngle;
+
+	float currentSpeed = m_isSelected ? m_selectedSpeed : m_normalSpeed;
+
+	m_localRot.y += currentSpeed * deltatime;
+	m_localRot.y = fmod(m_localRot.y, 360.0f);
+
+	Math::Vector3 targetScale = m_localScale;
+	if (m_isSelected)
+	{
+		targetScale *= 1.5f;
+		targetScale *= 1.5f;
+	}
+
+	m_currentScale = Math::Vector3::Lerp(m_currentScale, targetScale, deltatime * m_scaleLerpSpeed);
 }
 
 void MagicCircleComponent::DrawLit()
@@ -36,7 +50,7 @@ void MagicCircleComponent::DrawLit()
 	if (!m_ownerTransform || !m_spModel)return;
 
 	//行列計算
-	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_localScale);
+	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_currentScale);
 	Math::Matrix rotMat = Math::Matrix::CreateFromYawPitchRoll(
 		DirectX::XMConvertToRadians(m_localRot.y),
 		DirectX::XMConvertToRadians(m_localRot.x),
@@ -72,7 +86,7 @@ void MagicCircleComponent::DrawBright()
 	if (!m_ownerTransform || !m_spModel)return;
 
 	//行列計算
-	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_localScale);
+	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_currentScale);
 	Math::Matrix rotMat = Math::Matrix::CreateFromYawPitchRoll(
 		DirectX::XMConvertToRadians(m_localRot.y),
 		DirectX::XMConvertToRadians(m_localRot.x),
@@ -102,6 +116,11 @@ void MagicCircleComponent::DrawBright()
 
 	KdShaderManager::Instance().m_StandardShader.SetMaterialCB(originalMaterial);
 	KdShaderManager::Instance().UndoRasterizerState();
+}
+
+void MagicCircleComponent::OnSelect(bool isSelected)
+{
+	m_isSelected = isSelected;
 }
 
 void MagicCircleComponent::SetModel(const std::string& path)

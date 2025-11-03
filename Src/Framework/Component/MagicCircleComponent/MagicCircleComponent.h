@@ -13,6 +13,7 @@ public:
 	void DrawLit()override;
 	void DrawBright()override;
 
+	void OnSelect(bool isSelected);
 	void SetModel(const std::string& path);
 	std::string GetModelPath() const { return m_modelPath; }
 	void RequestTransformChangeCommand();
@@ -43,11 +44,16 @@ private:
 	std::shared_ptr<TransformComponent> m_ownerTransform;
 	Math::Vector3 m_localPos = Math::Vector3::Zero;
 	Math::Vector3 m_localRot = Math::Vector3::Zero;
-	Math::Vector3 m_localScale = Math::Vector3::One;
-	float m_rotationSpeedY = 90.0f;//90度/s
+	Math::Vector3 m_localScale = { 2.0f,1.0f,2.0f };
 	bool m_isDirty = false;	
 	float m_orbitAngle = 0.0f;
 	float m_orbitSpeed = 45.0f;
-	float m_orbitRadius = 1.5f;
+	float m_orbitRadius = 0.0f;
 	Math::Vector3 m_orbitAxisOffset = Math::Vector3::Zero;
+
+	bool m_isSelected = false;
+	const float	m_normalSpeed = 90.0f;
+	const float	m_selectedSpeed = 360.0f;
+	Math::Vector3 m_currentScale = Math::Vector3::One;
+	float m_scaleLerpSpeed = 10.0f;
 };

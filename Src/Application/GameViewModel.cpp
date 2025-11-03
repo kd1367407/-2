@@ -106,6 +106,9 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 	auto renderComp = selectedObject->GetComponent<RenderComponent>();
 	if (!renderComp)return;
 
+	auto magicCircle = selectedObject->GetComponent<MagicCircleComponent>();
+	if (!magicCircle)return;
+
 	auto transformComp = selectedObject->GetComponent<TransformComponent>();
 	Math::Vector3 selectedPos = transformComp->GetPos();
 
@@ -121,6 +124,7 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 		m_selectedPos.erase(itPos);
 		//ハイライト解除
 		renderComp->SetHighlightState(RenderComponent::HighlightState::None);
+		magicCircle->OnSelect(false);
 		return;
 	}
 
@@ -131,6 +135,7 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 		m_selectedIds.push_back(selectedId);
 		m_selectedPos.push_back(selectedPos);
 		renderComp->SetHighlightState(RenderComponent::HighlightState::Selected);
+		magicCircle->OnSelect(true);
 	}
 
 	//2つのオブジェクトが選択されたら
@@ -173,6 +178,10 @@ void GameViewModel::OnBlockSelected(const std::shared_ptr<GameObject>& selectedO
 					if (auto rComp = obj->GetComponent<RenderComponent>())
 					{
 						rComp->SetHighlightState(RenderComponent::HighlightState::None);
+					}
+					if (auto magicComp = obj->GetComponent<MagicCircleComponent>())
+					{
+						magicComp->OnSelect(false);
 					}
 				}
 			}
