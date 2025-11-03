@@ -307,6 +307,10 @@ BlockState GameObject::CreateState() const
 		outState.orbitRadius = comp->GetOrbitRadius();
 		outState.orbitSpeed = comp->GetOrbitSpeed();
 		outState.orbitAxisOffset = comp->GetOrbitAxisOffset();
+		outState.normalSpeed = comp->GetNormalSpeed();
+		outState.selectedSpeed = comp->GetSelectedSpeed();
+		outState.selectedScaleMultiplier = comp->GetScaleMultiplier();
+		outState.scaleLerpSpeed = comp->GetScaleLerpSpeed();
 	}
 
 	return outState;
@@ -460,6 +464,10 @@ void GameObject::ApplyState(const BlockState& state)
 			comp->SetOrbitRadius(state.orbitRadius);
 			comp->SetOrbitSpeed(state.orbitSpeed);
 			comp->SetOrbitAxisOffset(state.orbitAxisOffset);
+			comp->SetNormalSpeed(state.normalSpeed);
+			comp->SetSelectedSpeed(state.selectedSpeed);
+			comp->SetScaleMultiplier(state.selectedScaleMultiplier);
+			comp->SetScaleLerpSpeed(state.selectedSpeed);
 		}
 	}
 }

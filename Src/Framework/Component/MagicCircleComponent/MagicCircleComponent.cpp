@@ -38,8 +38,8 @@ void MagicCircleComponent::Update()
 	Math::Vector3 targetScale = m_localScale;
 	if (m_isSelected)
 	{
-		targetScale *= 1.5f;
-		targetScale *= 1.5f;
+		targetScale *= m_selectionScaleMultiplier;
+		targetScale *= m_selectionScaleMultiplier;
 	}
 
 	m_currentScale = Math::Vector3::Lerp(m_currentScale, targetScale, deltatime * m_scaleLerpSpeed);
@@ -171,6 +171,11 @@ void MagicCircleComponent::Configure(const nlohmann::json& data)
 	m_orbitRadius = JsonHelper::GetFloat(magicCircleData, "orbitRadius", m_orbitRadius);
 	m_orbitSpeed = JsonHelper::GetFloat(magicCircleData, "orbitSpeed", m_orbitSpeed);
 	JsonHelper::GetVector3(magicCircleData, "orbitAxisOffset", m_orbitAxisOffset, m_orbitAxisOffset);
+
+	m_normalSpeed = JsonHelper::GetFloat(magicCircleData, "normalSpeed", m_normalSpeed);
+	m_selectedSpeed = JsonHelper::GetFloat(magicCircleData, "selectedSpeed", m_selectedSpeed);
+	m_selectionScaleMultiplier = JsonHelper::GetFloat(magicCircleData, "selectedScaleMultiplier", m_selectionScaleMultiplier);
+	m_scaleLerpSpeed = JsonHelper::GetFloat(magicCircleData, "scaleLerpSpeed", m_scaleLerpSpeed);
 }
 
 nlohmann::json MagicCircleComponent::ToJson() const
@@ -185,6 +190,11 @@ nlohmann::json MagicCircleComponent::ToJson() const
 	j["orbitRadius"] = m_orbitRadius;
 	j["orbitSpeed"] = m_orbitSpeed;
 	j["orbitAxisOffset"] = { m_orbitAxisOffset.x, m_orbitAxisOffset.y, m_orbitAxisOffset.z };
+
+	j["normalSpeed"] = m_normalSpeed;
+	j["selectedSpeed"] = m_selectedSpeed;
+	j["selectedScaleMultiplier"] = m_selectionScaleMultiplier;
+	j["scaleLerpSpeed"] = m_scaleLerpSpeed;
 
 	return j;
 }
@@ -230,6 +240,22 @@ void MagicCircleComponent::OnInspect()
 		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
 
 		valueChanged |= ImGui::DragFloat3("orbitAxisOffset", &m_orbitAxisOffset.x, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		ImGui::Separator();
+
+		//--アニメーション関係--
+		ImGui::Text("Animation Parameters");
+		valueChanged |= ImGui::DragFloat("normalSpeed", &m_normalSpeed, 1.0f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		valueChanged |= ImGui::DragFloat("selectedSpeed", &m_selectedSpeed, 1.0f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		valueChanged |= ImGui::DragFloat("selectedScaleMultiplier", &m_selectionScaleMultiplier, 0.1f);
+		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
+
+		valueChanged |= ImGui::DragFloat("scaleLerpSpeed", &m_scaleLerpSpeed, 0.1f);
 		itemDeactivated |= ImGui::IsItemDeactivatedAfterEdit();
 
 		//いずれかのウィジェットウィジェットのドラッグが終了した瞬間

@@ -80,4 +80,8 @@ struct BlockState
 	float orbitRadius;
 	float orbitSpeed;
 	Math::Vector3 orbitAxisOffset;
+	float normalSpeed;
+	float selectedSpeed;
+	float selectedScaleMultiplier;
+	float scaleLerpSpeed;
 };

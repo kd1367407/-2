@@ -31,6 +31,14 @@ public:
 	void SetOrbitSpeed(const float& speed) { m_orbitSpeed = speed; }
 	const Math::Vector3& GetOrbitAxisOffset()const { return m_orbitAxisOffset; }
 	void SetOrbitAxisOffset(const Math::Vector3& offset) { m_orbitAxisOffset = offset; }
+	void SetNormalSpeed(const float& speed) { m_normalSpeed = speed; }
+	const float& GetNormalSpeed()const { return m_normalSpeed; }
+	void SetSelectedSpeed(const float& speed) { m_selectedSpeed = speed; }
+	const float& GetSelectedSpeed()const { return m_selectedSpeed; }
+	void SetScaleMultiplier(const float& multiplier) { m_selectionScaleMultiplier = multiplier; }
+	const float& GetScaleMultiplier()const { return m_selectionScaleMultiplier; }
+	void SetScaleLerpSpeed(const float& speed) { m_scaleLerpSpeed = speed; }
+	const float& GetScaleLerpSpeed()const { return m_scaleLerpSpeed; }
 
 	void Configure(const nlohmann::json& data) override;
 	nlohmann::json ToJson() const override;
@@ -52,8 +60,9 @@ private:
 	Math::Vector3 m_orbitAxisOffset = Math::Vector3::Zero;
 
 	bool m_isSelected = false;
-	const float	m_normalSpeed = 90.0f;
-	const float	m_selectedSpeed = 360.0f;
+	float m_normalSpeed = 90.0f;
+	float m_selectedSpeed = 360.0f;
 	Math::Vector3 m_currentScale = Math::Vector3::One;
+	float m_selectionScaleMultiplier = 1.5f;
 	float m_scaleLerpSpeed = 10.0f;
 };
