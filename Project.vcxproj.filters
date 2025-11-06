@@ -301,6 +301,9 @@
     <Filter Include="Src\Framework\Component\MagicCircleComponent">
       <UniqueIdentifier>{82ee6217-f7dc-43f4-a98d-c4ffd0e4243f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Framework\Font">
+      <UniqueIdentifier>{43a22108-3007-478d-a13f-1863028cc968}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -717,6 +720,9 @@
     <ClInclude Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.h">
       <Filter>Src\Framework\Component\MagicCircleComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Framework\Font\KdFont.h">
+      <Filter>Src\Framework\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -1054,6 +1060,9 @@
     </ClCompile>
     <ClCompile Include="Src\Framework\Component\MagicCircleComponent\MagicCircleComponent.cpp">
       <Filter>Src\Framework\Component\MagicCircleComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Framework\Font\KdFont.cpp">
+      <Filter>Src\Framework\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

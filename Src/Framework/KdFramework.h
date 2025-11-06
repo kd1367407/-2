@@ -67,6 +67,9 @@
 #include "Shader/KdAmbientController.h"
 #include "Shader/KdShaderManager.h"
 
+//フォント
+#include"Font/KdFont.h"
+
 // デバッグ機能
 #include "Utility/Debug/KdDebugWireFrame.h"
 #include "Utility/Debug/KdDebugGUI.h"

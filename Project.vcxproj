@@ -355,6 +355,7 @@
     <ClInclude Include="Src\Framework\Editor\Editor.h" />
     <ClInclude Include="Src\Framework\Editor\EditorGizmoContext.h" />
     <ClInclude Include="Src\Framework\Effekseer\KdEffekseerManager.h" />
+    <ClInclude Include="Src\Framework\Font\KdFont.h" />
     <ClInclude Include="Src\Framework\GameObject\Archetype.h" />
     <ClInclude Include="Src\Framework\GameObject\ArchetypeManager.h" />
     <ClInclude Include="Src\Framework\GameObject\GameObjectFactory.h" />
@@ -479,6 +480,7 @@
     <ClCompile Include="Src\Framework\Direct3D\Polygon\KdTrailPolygon.cpp" />
     <ClCompile Include="Src\Framework\Editor\Editor.cpp" />
     <ClCompile Include="Src\Framework\Effekseer\KdEffekseerManager.cpp" />
+    <ClCompile Include="Src\Framework\Font\KdFont.cpp" />
     <ClCompile Include="Src\Framework\GameObject\Archetype.cpp" />
     <ClCompile Include="Src\Framework\GameObject\ArchetypeManager.cpp" />
     <ClCompile Include="Src\Framework\GameObject\GameObjectFactory.cpp" />

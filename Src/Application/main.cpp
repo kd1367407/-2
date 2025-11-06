@@ -182,6 +182,14 @@ bool Application::Init(int w, int h)
 	KdAudioManager::Instance().Init();
 
 	//===================================================================
+	// フォント初期化
+	//===================================================================
+	KdFontManager::Instance().Init(GetWindowHandle());
+	// フォント追加
+	KdFontManager::Instance().AddFontResource("Asset/Data/Font/FuwaFude.ttf");
+	KdFontManager::Instance().AddFont(0, "ふわふで", 50);
+
+	//===================================================================
 	// imgui初期化
 	//===================================================================
 	m_debugGui.GuiInit();
